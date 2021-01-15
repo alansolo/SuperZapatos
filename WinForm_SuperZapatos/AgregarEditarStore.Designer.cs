@@ -32,9 +32,14 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnCancelarStore = new System.Windows.Forms.Button();
+            this.btnGuardarStore = new System.Windows.Forms.Button();
+            this.lblNameStore = new System.Windows.Forms.Label();
+            this.txtNameStore = new System.Windows.Forms.TextBox();
+            this.lblAddressStore = new System.Windows.Forms.Label();
+            this.txtAddressStore = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,52 +53,88 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(409, 245);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(301, 137);
             this.tableLayoutPanel1.TabIndex = 4;
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.txtAddressStore);
+            this.panel1.Controls.Add(this.lblAddressStore);
+            this.panel1.Controls.Add(this.txtNameStore);
+            this.panel1.Controls.Add(this.lblNameStore);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(403, 190);
+            this.panel1.Size = new System.Drawing.Size(295, 89);
             this.panel1.TabIndex = 0;
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.button2);
-            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.btnCancelarStore);
+            this.panel2.Controls.Add(this.btnGuardarStore);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(3, 199);
+            this.panel2.Location = new System.Drawing.Point(3, 98);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(403, 43);
+            this.panel2.Size = new System.Drawing.Size(295, 36);
             this.panel2.TabIndex = 1;
             // 
-            // button1
+            // btnCancelarStore
             // 
-            this.button1.Location = new System.Drawing.Point(57, 11);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnCancelarStore.Location = new System.Drawing.Point(161, 11);
+            this.btnCancelarStore.Name = "btnCancelarStore";
+            this.btnCancelarStore.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelarStore.TabIndex = 1;
+            this.btnCancelarStore.Text = "button2";
+            this.btnCancelarStore.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnGuardarStore
             // 
-            this.button2.Location = new System.Drawing.Point(161, 11);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnGuardarStore.Location = new System.Drawing.Point(57, 11);
+            this.btnGuardarStore.Name = "btnGuardarStore";
+            this.btnGuardarStore.Size = new System.Drawing.Size(75, 23);
+            this.btnGuardarStore.TabIndex = 0;
+            this.btnGuardarStore.Text = "button1";
+            this.btnGuardarStore.UseVisualStyleBackColor = true;
+            // 
+            // lblNameStore
+            // 
+            this.lblNameStore.AutoSize = true;
+            this.lblNameStore.Location = new System.Drawing.Point(25, 19);
+            this.lblNameStore.Name = "lblNameStore";
+            this.lblNameStore.Size = new System.Drawing.Size(54, 15);
+            this.lblNameStore.TabIndex = 0;
+            this.lblNameStore.Text = "Nombre:";
+            // 
+            // txtNameStore
+            // 
+            this.txtNameStore.Location = new System.Drawing.Point(109, 16);
+            this.txtNameStore.Name = "txtNameStore";
+            this.txtNameStore.Size = new System.Drawing.Size(149, 23);
+            this.txtNameStore.TabIndex = 1;
+            // 
+            // lblAddressStore
+            // 
+            this.lblAddressStore.AutoSize = true;
+            this.lblAddressStore.Location = new System.Drawing.Point(25, 48);
+            this.lblAddressStore.Name = "lblAddressStore";
+            this.lblAddressStore.Size = new System.Drawing.Size(60, 15);
+            this.lblAddressStore.TabIndex = 0;
+            this.lblAddressStore.Text = "Direccion:";
+            // 
+            // txtAddressStore
+            // 
+            this.txtAddressStore.Location = new System.Drawing.Point(109, 45);
+            this.txtAddressStore.Name = "txtAddressStore";
+            this.txtAddressStore.Size = new System.Drawing.Size(149, 23);
+            this.txtAddressStore.TabIndex = 1;
             // 
             // AgregarEditarStore
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(409, 245);
+            this.ClientSize = new System.Drawing.Size(301, 137);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
@@ -103,6 +144,8 @@
             this.Name = "AgregarEditarStore";
             this.Text = "Store";
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -111,8 +154,12 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnCancelarStore;
+        private System.Windows.Forms.Button btnGuardarStore;
+        private System.Windows.Forms.TextBox txtAddressStore;
+        private System.Windows.Forms.Label lblAddressStore;
+        private System.Windows.Forms.TextBox txtNameStore;
+        private System.Windows.Forms.Label lblNameStore;
     }
 }
 

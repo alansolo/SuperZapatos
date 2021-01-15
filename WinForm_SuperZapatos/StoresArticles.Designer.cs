@@ -1,6 +1,6 @@
 ﻿namespace SuperZapatosNC
 {
-    partial class Form1
+    partial class StoresArticles
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StoresArticles));
             this.tabSuperZapatos = new System.Windows.Forms.TabControl();
             this.tabStore = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();

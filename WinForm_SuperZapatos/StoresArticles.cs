@@ -14,10 +14,10 @@ using System.Windows.Forms;
 
 namespace SuperZapatosNC
 {
-    public partial class Form1 : Form
+    public partial class StoresArticles : Form
     {
         object listStores;
-        public Form1()
+        public StoresArticles()
         {
             InitializeComponent();
 
