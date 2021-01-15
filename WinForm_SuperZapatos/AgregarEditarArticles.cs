@@ -8,10 +8,10 @@ using System.Windows.Forms;
 
 namespace WinForm_SuperZapatos
 {
-    public partial class AgregarEditarStore : Form
+    public partial class AgregarEditarArticles : Form
     {
 
-        public AgregarEditarStore()
+        public AgregarEditarArticles()
         {
             InitializeComponent();
         }

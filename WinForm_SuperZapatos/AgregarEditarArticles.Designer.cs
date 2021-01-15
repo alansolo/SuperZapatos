@@ -1,6 +1,6 @@
 ﻿namespace WinForm_SuperZapatos
 {
-    partial class AgregarEditarStore
+    partial class AgregarEditarArticles
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -28,16 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AgregarEditarStore));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AgregarEditarArticles));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.btnCancelarStore = new System.Windows.Forms.Button();
-            this.btnGuardarStore = new System.Windows.Forms.Button();
-            this.lblNameStore = new System.Windows.Forms.Label();
-            this.txtNameStore = new System.Windows.Forms.TextBox();
-            this.lblAddressStore = new System.Windows.Forms.Label();
-            this.txtAddressStore = new System.Windows.Forms.TextBox();
+            this.btnCancelarArticles = new System.Windows.Forms.Button();
+            this.btnGuardarArticles = new System.Windows.Forms.Button();
+            this.lblNameArticles = new System.Windows.Forms.Label();
+            this.txtNameArticles = new System.Windows.Forms.TextBox();
+            this.lblAddressArticles = new System.Windows.Forms.Label();
+            this.txtAddressArticles = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -60,10 +60,10 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.txtAddressStore);
-            this.panel1.Controls.Add(this.lblAddressStore);
-            this.panel1.Controls.Add(this.txtNameStore);
-            this.panel1.Controls.Add(this.lblNameStore);
+            this.panel1.Controls.Add(this.txtAddressArticles);
+            this.panel1.Controls.Add(this.lblAddressArticles);
+            this.panel1.Controls.Add(this.txtNameArticles);
+            this.panel1.Controls.Add(this.lblNameArticles);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
@@ -72,65 +72,65 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.btnCancelarStore);
-            this.panel2.Controls.Add(this.btnGuardarStore);
+            this.panel2.Controls.Add(this.btnCancelarArticles);
+            this.panel2.Controls.Add(this.btnGuardarArticles);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 98);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(295, 36);
             this.panel2.TabIndex = 1;
             // 
-            // btnCancelarStore
+            // btnCancelarArticles
             // 
-            this.btnCancelarStore.Location = new System.Drawing.Point(161, 11);
-            this.btnCancelarStore.Name = "btnCancelarStore";
-            this.btnCancelarStore.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelarStore.TabIndex = 1;
-            this.btnCancelarStore.Text = "Cancelar";
-            this.btnCancelarStore.UseVisualStyleBackColor = true;
+            this.btnCancelarArticles.Location = new System.Drawing.Point(161, 11);
+            this.btnCancelarArticles.Name = "btnCancelarArticles";
+            this.btnCancelarArticles.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelarArticles.TabIndex = 1;
+            this.btnCancelarArticles.Text = "Cancelar";
+            this.btnCancelarArticles.UseVisualStyleBackColor = true;
             // 
-            // btnGuardarStore
+            // btnGuardarArticles
             // 
-            this.btnGuardarStore.Location = new System.Drawing.Point(57, 11);
-            this.btnGuardarStore.Name = "btnGuardarStore";
-            this.btnGuardarStore.Size = new System.Drawing.Size(75, 23);
-            this.btnGuardarStore.TabIndex = 0;
-            this.btnGuardarStore.Text = "Guardar";
-            this.btnGuardarStore.UseVisualStyleBackColor = true;
+            this.btnGuardarArticles.Location = new System.Drawing.Point(57, 11);
+            this.btnGuardarArticles.Name = "btnGuardarArticles";
+            this.btnGuardarArticles.Size = new System.Drawing.Size(75, 23);
+            this.btnGuardarArticles.TabIndex = 0;
+            this.btnGuardarArticles.Text = "Guardar";
+            this.btnGuardarArticles.UseVisualStyleBackColor = true;
             // 
-            // lblNameStore
+            // lblNameArticles
             // 
-            this.lblNameStore.AutoSize = true;
-            this.lblNameStore.Location = new System.Drawing.Point(25, 19);
-            this.lblNameStore.Name = "lblNameStore";
-            this.lblNameStore.Size = new System.Drawing.Size(54, 15);
-            this.lblNameStore.TabIndex = 0;
-            this.lblNameStore.Text = "Nombre:";
+            this.lblNameArticles.AutoSize = true;
+            this.lblNameArticles.Location = new System.Drawing.Point(25, 19);
+            this.lblNameArticles.Name = "lblNameArticles";
+            this.lblNameArticles.Size = new System.Drawing.Size(54, 15);
+            this.lblNameArticles.TabIndex = 0;
+            this.lblNameArticles.Text = "Nombre:";
             // 
-            // txtNameStore
+            // txtNameArticles
             // 
-            this.txtNameStore.Location = new System.Drawing.Point(109, 16);
-            this.txtNameStore.Name = "txtNameStore";
-            this.txtNameStore.Size = new System.Drawing.Size(149, 23);
-            this.txtNameStore.TabIndex = 1;
+            this.txtNameArticles.Location = new System.Drawing.Point(109, 16);
+            this.txtNameArticles.Name = "txtNameArticles";
+            this.txtNameArticles.Size = new System.Drawing.Size(149, 23);
+            this.txtNameArticles.TabIndex = 1;
             // 
-            // lblAddressStore
+            // lblAddressArticles
             // 
-            this.lblAddressStore.AutoSize = true;
-            this.lblAddressStore.Location = new System.Drawing.Point(25, 48);
-            this.lblAddressStore.Name = "lblAddressStore";
-            this.lblAddressStore.Size = new System.Drawing.Size(60, 15);
-            this.lblAddressStore.TabIndex = 0;
-            this.lblAddressStore.Text = "Direccion:";
+            this.lblAddressArticles.AutoSize = true;
+            this.lblAddressArticles.Location = new System.Drawing.Point(25, 48);
+            this.lblAddressArticles.Name = "lblAddressArticles";
+            this.lblAddressArticles.Size = new System.Drawing.Size(60, 15);
+            this.lblAddressArticles.TabIndex = 0;
+            this.lblAddressArticles.Text = "Direccion:";
             // 
-            // txtAddressStore
+            // txtAddressArticles
             // 
-            this.txtAddressStore.Location = new System.Drawing.Point(109, 45);
-            this.txtAddressStore.Name = "txtAddressStore";
-            this.txtAddressStore.Size = new System.Drawing.Size(149, 23);
-            this.txtAddressStore.TabIndex = 1;
+            this.txtAddressArticles.Location = new System.Drawing.Point(109, 45);
+            this.txtAddressArticles.Name = "txtAddressArticles";
+            this.txtAddressArticles.Size = new System.Drawing.Size(149, 23);
+            this.txtAddressArticles.TabIndex = 1;
             // 
-            // AgregarEditarStore
+            // AgregarEditarArticles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -141,26 +141,26 @@
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "AgregarEditarStore";
-            this.Text = "Store";
+            this.Name = "AgregarEditarArticles";
+            this.Text = "Articles";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
-        }
+    }
         #endregion
-        
+
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button btnCancelarStore;
-        private System.Windows.Forms.Button btnGuardarStore;
-        private System.Windows.Forms.TextBox txtAddressStore;
-        private System.Windows.Forms.Label lblAddressStore;
-        private System.Windows.Forms.TextBox txtNameStore;
-        private System.Windows.Forms.Label lblNameStore;
+        private System.Windows.Forms.Button btnCancelarArticles;
+        private System.Windows.Forms.Button btnGuardarArticles;
+        private System.Windows.Forms.TextBox txtAddressArticles;
+        private System.Windows.Forms.Label lblAddressArticles;
+        private System.Windows.Forms.TextBox txtNameArticles;
+        private System.Windows.Forms.Label lblNameArticles;
     }
 }
 
