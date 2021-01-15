@@ -140,8 +140,31 @@ namespace WebApi_SuperZapatos.Controllers
                     return StoreResponse;
                 }
 
+                if(idNumero != stores.id)
+                {
+                    StoreResponse.stores = new List<Stores>();
+                    StoreResponse.total_elements = 0;
+                    StoreResponse.success = false;
+                    StoreResponse.error_code = 400;
+                    StoreResponse.error_msg = "Bad Request";
+
+                    return StoreResponse;
+                }
+
                 using (DbContextSuperZapatos superZapatos = new DbContextSuperZapatos(connectionString))
                 {
+                    Stores storesEdit = superZapatos.Stores.Find(idNumero);
+                    if (storesEdit == null)
+                    {
+                        StoreResponse.stores = new List<Stores>();
+                        StoreResponse.total_elements = 0;
+                        StoreResponse.success = false;
+                        StoreResponse.error_code = 404;
+                        StoreResponse.error_msg = "Record not Found";
+
+                        return StoreResponse;
+                    }
+
                     superZapatos.Entry(stores).State = EntityState.Modified;
                     superZapatos.SaveChanges();
 
@@ -201,9 +224,21 @@ namespace WebApi_SuperZapatos.Controllers
 
                 using (DbContextSuperZapatos superZapatos = new DbContextSuperZapatos(connectionString))
                 {
-                    //superZapatos.remo().State = EntityState.Modified;
-                    superZapatos.SaveChanges();
+                    Stores storesDelete = superZapatos.Stores.Find(idNumero);
+                    if(storesDelete == null)
+                    {
+                        StoreResponse.stores = new List<Stores>();
+                        StoreResponse.total_elements = 0;
+                        StoreResponse.success = false;
+                        StoreResponse.error_code = 404;
+                        StoreResponse.error_msg = "Record not Found";
 
+                        return StoreResponse;
+                    }
+
+                    superZapatos.Stores.Remove(storesDelete);
+                    superZapatos.SaveChanges();
+                    
                     ListaStores = superZapatos.Stores.ToList();
                 }
 
@@ -357,9 +392,116 @@ namespace WebApi_SuperZapatos.Controllers
                     return ArticlesResponse;
                 }
 
+                if(idNumero != articles.id)
+                {
+                    ArticlesResponse.articles = new List<ApiArticles>();
+                    ArticlesResponse.total_elements = 0;
+                    ArticlesResponse.success = false;
+                    ArticlesResponse.error_code = 400;
+                    ArticlesResponse.error_msg = "Bad Request";
+
+                    return ArticlesResponse;
+                }
+
                 using (DbContextSuperZapatos superZapatos = new DbContextSuperZapatos(connectionString))
                 {
-                    superZapatos.Articles.Add(articles);
+                    Articles articlesEdit = superZapatos.Articles.Find(idNumero);
+                    if (articlesEdit == null)
+                    {
+                        ArticlesResponse.articles = new List<ApiArticles>();
+                        ArticlesResponse.total_elements = 0;
+                        ArticlesResponse.success = false;
+                        ArticlesResponse.error_code = 404;
+                        ArticlesResponse.error_msg = "Record not Found";
+
+                        return ArticlesResponse;
+                    }
+
+                    superZapatos.Entry(articles).State = EntityState.Modified;
+                    superZapatos.SaveChanges();
+
+                    superZapatos.Stores.ToList();
+                    ListaArticles = superZapatos.Articles.ToList();
+                }
+
+                ArticlesResponse.articles = (from a in ListaArticles
+                                             select new ApiArticles
+                                             {
+                                                 id = a.id,
+                                                 name = a.name,
+                                                 description = a.description,
+                                                 price = a.price,
+                                                 total_in_vault = a.total_in_vault,
+                                                 total_in_shelf = a.total_in_shelf,
+                                                 store_name = a.store.name
+                                             }
+                                             ).ToList();
+                ArticlesResponse.total_elements = ListaArticles.Count;
+                ArticlesResponse.success = true;
+                ArticlesResponse.error_code = 0;
+                ArticlesResponse.error_msg = string.Empty;
+            }
+            catch (Exception ex)
+            {
+                ArticlesResponse.articles = new List<ApiArticles>();
+                ArticlesResponse.total_elements = 0;
+                ArticlesResponse.success = false;
+                ArticlesResponse.error_code = 500;
+                ArticlesResponse.error_msg = "Server Error";
+            }
+
+            return ArticlesResponse;
+        }
+        [HttpPost]
+        [Route("services/articles/delete/{id?}")]
+        public ArticlesResponse Articles(string id)
+        {
+            ArticlesResponse ArticlesResponse = new ArticlesResponse();
+            List<Articles> ListaArticles = new List<Articles>();
+            int idNumero;
+
+            try
+            {
+                if (id == null)
+                {
+                    ArticlesResponse.articles = new List<ApiArticles>();
+                    ArticlesResponse.total_elements = 0;
+                    ArticlesResponse.success = false;
+                    ArticlesResponse.error_code = 400;
+                    ArticlesResponse.error_msg = "Bad Request";
+
+                    return ArticlesResponse;
+                }
+
+                bool esNumero = Int32.TryParse(id, out idNumero);
+
+                if (!esNumero)
+                {
+                    ArticlesResponse.articles = new List<ApiArticles>();
+                    ArticlesResponse.total_elements = 0;
+                    ArticlesResponse.success = false;
+                    ArticlesResponse.error_code = 400;
+                    ArticlesResponse.error_msg = "Bad Request";
+
+                    return ArticlesResponse;
+                }
+
+                using (DbContextSuperZapatos superZapatos = new DbContextSuperZapatos(connectionString))
+                {
+                    Articles articlesDelete = superZapatos.Articles.Find(idNumero);
+                    if (articlesDelete == null)
+                    {
+                        ArticlesResponse.articles = new List<ApiArticles>();
+                        ArticlesResponse.total_elements = 0;
+                        ArticlesResponse.success = false;
+                        ArticlesResponse.error_code = 404;
+                        ArticlesResponse.error_msg = "Record not Found";
+
+                        return ArticlesResponse;
+                    }
+
+                    superZapatos.Articles.Remove(articlesDelete);
+                    superZapatos.SaveChanges();
 
                     superZapatos.Stores.ToList();
                     ListaArticles = superZapatos.Articles.ToList();
