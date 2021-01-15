@@ -21,12 +21,12 @@ namespace SuperZapatosNC
         {
             InitializeComponent();
 
-            CargarStore();
+            LoadStore();
 
-            CargarArticles();
+            LoadArticles();
             
         }  
-        public void CargarStore()
+        public void LoadStore()
         {
             try
             {
@@ -68,7 +68,7 @@ namespace SuperZapatosNC
 
             }
         }
-        public void CargarArticles()
+        public void LoadArticles()
         {
             try
             {
@@ -114,7 +114,7 @@ namespace SuperZapatosNC
 
             }
         }
-        public void CargarArticles(int id)
+        public void LoadArticles(int id)
         {
             try
             {
@@ -174,15 +174,63 @@ namespace SuperZapatosNC
                 return;
             }
 
-            CargarArticles(idNumero);
+            LoadArticles(idNumero);
         }
-
         private void dgvStore_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.ColumnIndex == 1)
+            //EDITAR STORE
+            if(e.ColumnIndex == 0)
             {
 
             }
+            //ELIMINAR STORE
+            else if(e.ColumnIndex == 1)
+            {
+
+            }
+        }
+        private void AddStore(object store)
+        {
+
+        }
+        private void DeleteStore(int id)
+        {
+            //ELIMINAR STORES
+            HttpClient client = new HttpClient();
+            var responseTask = client.GetAsync(ConfigurationManager.AppSettings["ApiStoresDelete"] + "/" + id);
+            responseTask.Wait();
+
+            if (responseTask.Result.IsSuccessStatusCode)
+            {
+                var respuestaString = responseTask.Result.Content.ReadAsStringAsync();
+                respuestaString.Wait();
+                JObject objetoJson = JObject.Parse(respuestaString.Result);
+                var success = objetoJson["success"];
+                if ((bool)success)
+                {
+                    var total_elements = objetoJson["total_elements"];
+                    var stores = objetoJson["stores"];
+                    listStores = (from a in stores
+                                  select new
+                                  {
+                                      id = a["id"],
+                                      name = a["name"],
+                                      address = a["address"]
+                                  }).ToList();
+
+                    dgvStore.DataSource = listStores;
+                    dgvStore.Refresh();
+                }
+                else
+                {
+                    var error_code = objetoJson["error_code"];
+                    var stores = objetoJson["stores"];
+                }
+            }
+        }
+        private void EditStore(int id, object store)
+        {
+
         }
     }
 }
