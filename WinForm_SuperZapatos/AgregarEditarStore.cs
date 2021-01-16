@@ -12,6 +12,7 @@ namespace WinForm_SuperZapatos
 {
     public partial class AgregarEditarStore : Form
     {
+        public int id;
         public bool esGuardar;
         public string nameStore;
         public string addressStore;

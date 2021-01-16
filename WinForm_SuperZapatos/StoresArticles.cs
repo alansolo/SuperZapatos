@@ -195,14 +195,21 @@ namespace SuperZapatos
         private void dgvStore_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             //EDITAR STORE
-            if(e.ColumnIndex == 0)
+            if (e.ColumnIndex == 0)
             {
 
             }
             //ELIMINAR STORE
             else if(e.ColumnIndex == 1)
             {
+                DialogResult respuestaEliminar = MessageBox.Show("¿Estas seguro de que quieres eliminar el Tienda?", "Eliminar Tienda", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
+                if (respuestaEliminar.ToString().ToUpper() == "YES")
+                {
+                    int idDelete = Convert.ToInt32(dgvStore.Rows[e.RowIndex].Cells["id"].Value.ToString());
+
+                    DeleteStore(idDelete);
+                }
             }
         }
         private void AddStore(JObject store)
@@ -249,7 +256,7 @@ namespace SuperZapatos
         {
             //ELIMINAR STORES
             HttpClient client = new HttpClient();
-            var responseTask = client.GetAsync(ConfigurationManager.AppSettings["ApiStoresDelete"] + "/" + id);
+            var responseTask = client.DeleteAsync(ConfigurationManager.AppSettings["ApiStoresDelete"] + "/" + id);
             responseTask.Wait();
 
             if (responseTask.Result.IsSuccessStatusCode)
@@ -272,6 +279,8 @@ namespace SuperZapatos
 
                     dgvStore.DataSource = listStores;
                     dgvStore.Refresh();
+
+                    MessageBox.Show("Se elimino la Tienda de forma correcta.", "Eliminar Tienda", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {

@@ -55,7 +55,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(301, 137);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(301, 145);
             this.tableLayoutPanel1.TabIndex = 4;
             // 
             // panel1
@@ -67,7 +67,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(295, 89);
+            this.panel1.Size = new System.Drawing.Size(295, 95);
             this.panel1.TabIndex = 0;
             // 
             // txtAddressStore
@@ -107,9 +107,9 @@
             this.panel2.Controls.Add(this.btnCancelarStore);
             this.panel2.Controls.Add(this.btnGuardarStore);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(3, 98);
+            this.panel2.Location = new System.Drawing.Point(3, 104);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(295, 36);
+            this.panel2.Size = new System.Drawing.Size(295, 38);
             this.panel2.TabIndex = 1;
             // 
             // btnCancelarStore
@@ -125,9 +125,9 @@
             // 
             // btnGuardarStore
             // 
-            this.btnGuardarStore.Location = new System.Drawing.Point(57, 7);
+            this.btnGuardarStore.Location = new System.Drawing.Point(57, 5);
             this.btnGuardarStore.Name = "btnGuardarStore";
-            this.btnGuardarStore.Size = new System.Drawing.Size(75, 23);
+            this.btnGuardarStore.Size = new System.Drawing.Size(88, 25);
             this.btnGuardarStore.TabIndex = 2;
             this.btnGuardarStore.Text = "Guardar";
             this.btnGuardarStore.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -138,7 +138,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(301, 137);
+            this.ClientSize = new System.Drawing.Size(301, 145);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
