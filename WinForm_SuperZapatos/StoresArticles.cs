@@ -207,6 +207,7 @@ namespace SuperZapatos
                 if (agregarStore.esGuardar)
                 {
                     var store = (dynamic)new JObject();
+                    store.id = idEdit;
                     store.name = agregarStore.nameStore;
                     store.address = agregarStore.addressStore;
 
@@ -309,7 +310,7 @@ namespace SuperZapatos
             //ELIMINAR STORES
             HttpClient client = new HttpClient();
             var content = new StringContent(store.ToString(), Encoding.UTF8, "application/json");
-            var responseTask = client.PutAsync(ConfigurationManager.AppSettings["ApiStoresEdit"], content);
+            var responseTask = client.PutAsync(ConfigurationManager.AppSettings["ApiStoresEdit"] + "/" + id, content);
             responseTask.Wait();
 
             if (responseTask.Result.IsSuccessStatusCode)

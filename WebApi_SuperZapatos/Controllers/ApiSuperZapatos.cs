@@ -165,7 +165,8 @@ namespace WebApi_SuperZapatos.Controllers
                         return StoreResponse;
                     }
 
-                    superZapatos.Entry(stores).State = EntityState.Modified;
+                    storesEdit = stores;
+
                     superZapatos.SaveChanges();
 
                     ListaStores = superZapatos.Stores.ToList();
@@ -417,7 +418,8 @@ namespace WebApi_SuperZapatos.Controllers
                         return ArticlesResponse;
                     }
 
-                    superZapatos.Entry(articles).State = EntityState.Modified;
+                    articlesEdit = articles;
+
                     superZapatos.SaveChanges();
 
                     superZapatos.Stores.ToList();
