@@ -25,8 +25,7 @@ namespace SuperZapatos
 
             LoadStore();
 
-            LoadArticles();
-            
+            LoadArticles();        
         }  
         public void LoadStore()
         {
@@ -45,8 +44,16 @@ namespace SuperZapatos
                     var success = objetoJson["success"];
                     if ((bool)success)
                     {
+                        var elementoDefault = (dynamic) new JObject();
+                        elementoDefault.id = 0;
+                        elementoDefault.name = "-- Seleccione --";
+                        elementoDefault.address = "";
+
                         var total_elements = objetoJson["total_elements"];
                         var stores = objetoJson["stores"];
+                        var storesCmb = stores.ToList();
+                        storesCmb.Add(elementoDefault);
+
                         listStores = (from a in stores
                                       select new
                                       {
@@ -54,9 +61,24 @@ namespace SuperZapatos
                                           name = a["name"],
                                           address = a["address"]
                                       }).ToList();
-
+                        
+                        //CARGAR DATA GRID CON LA LISTA DE STORE 
                         dgvStore.DataSource = listStores;
                         dgvStore.Refresh();
+
+                        //CARGAR COMBO BOX CON LA LISTA DE STORE
+                        object listStoresCmb = (from a in storesCmb
+                                                select new
+                                                {
+                                                    id = a["id"],
+                                                    name = a["name"],
+                                                    address = a["address"]
+                                                }).OrderBy(n => n.id).ToList();
+
+                        cmbTiendaArticles.DataSource = listStoresCmb;
+                        cmbTiendaArticles.DisplayMember = "name";
+                        cmbTiendaArticles.ValueMember = "id";
+                        cmbTiendaArticles.Refresh();
                     }
                     else
                     {
@@ -74,7 +96,7 @@ namespace SuperZapatos
         {
             try
             {
-                //CARGAR STORES
+                //CARGAR ARTICLES
                 HttpClient client = new HttpClient();
                 var responseTask = client.GetAsync(ConfigurationManager.AppSettings["ApiArticles"]);
                 responseTask.Wait();
@@ -120,7 +142,7 @@ namespace SuperZapatos
         {
             try
             {
-                //CARGAR STORES
+                //CARGAR ARTICLES POR ID
                 HttpClient client = new HttpClient();
                 var responseTask = client.GetAsync(ConfigurationManager.AppSettings["ApiArticlesStores"] + "/" + id);
                 responseTask.Wait();
@@ -164,6 +186,7 @@ namespace SuperZapatos
         }
         private void btnAgregarStore_Click(object sender, EventArgs e)
         {
+            //AGREGAR STORE
             AgregarEditarStore agregarStore = new AgregarEditarStore(AgregarEditarStore.Tipo.Add, "", "");
             agregarStore.ShowDialog();
 
@@ -178,19 +201,28 @@ namespace SuperZapatos
         }
         private void btnBuscarArticlesStores_Click(object sender, EventArgs e)
         {
-            string idString = txtBuscarArticlesStores.Text;
-            int idNumero;
-
-            bool esNumero = Int32.TryParse(idString, out idNumero);
-
-            if(!esNumero)
+            if (Convert.ToInt32(cmbTiendaArticles.SelectedValue.ToString()) == 0)
             {
-                MessageBox.Show("Debe agregar un numero en el campo de Id Tienda", "Buscar Articulos", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                return;
+                //CARGAR TODOS LOS ARTICLES POR DEFAULT
+                LoadArticles();
             }
+            else
+            {
+                //CARGAR ARTICLES POR ID
+                string idString = cmbTiendaArticles.SelectedValue.ToString(); //txtBuscarArticlesStores.Text;
+                int idNumero;
 
-            LoadArticles(idNumero);
+                bool esNumero = Int32.TryParse(idString, out idNumero);
+
+                if (!esNumero)
+                {
+                    MessageBox.Show("Debe agregar un numero en el campo de Id Tienda", "Buscar Articulos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    return;
+                }
+
+                LoadArticles(idNumero);
+            }
         }
         private void dgvStore_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -307,7 +339,7 @@ namespace SuperZapatos
         }
         private void EditStore(int id, JObject store)
         {
-            //ELIMINAR STORES
+            //EDITAR STORES
             HttpClient client = new HttpClient();
             var content = new StringContent(store.ToString(), Encoding.UTF8, "application/json");
             var responseTask = client.PutAsync(ConfigurationManager.AppSettings["ApiStoresEdit"] + "/" + id, content);

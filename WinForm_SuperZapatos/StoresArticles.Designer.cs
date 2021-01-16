@@ -40,8 +40,8 @@
             this.tabArticles = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cmbTiendaArticles = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtBuscarArticlesStores = new System.Windows.Forms.TextBox();
             this.btnBuscarArticlesStores = new System.Windows.Forms.Button();
             this.btnAgregarArticulo = new System.Windows.Forms.Button();
             this.dgvArticles = new System.Windows.Forms.DataGridView();
@@ -175,8 +175,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.cmbTiendaArticles);
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.txtBuscarArticlesStores);
             this.panel2.Controls.Add(this.btnBuscarArticlesStores);
             this.panel2.Controls.Add(this.btnAgregarArticulo);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -185,28 +185,29 @@
             this.panel2.Size = new System.Drawing.Size(716, 118);
             this.panel2.TabIndex = 0;
             // 
+            // cmbTiendaArticles
+            // 
+            this.cmbTiendaArticles.FormattingEnabled = true;
+            this.cmbTiendaArticles.Location = new System.Drawing.Point(77, 25);
+            this.cmbTiendaArticles.Name = "cmbTiendaArticles";
+            this.cmbTiendaArticles.Size = new System.Drawing.Size(147, 23);
+            this.cmbTiendaArticles.TabIndex = 3;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(37, 32);
+            this.label1.Location = new System.Drawing.Point(13, 28);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 15);
             this.label1.TabIndex = 2;
             this.label1.Text = "Id Tienda:";
-            // 
-            // txtBuscarArticlesStores
-            // 
-            this.txtBuscarArticlesStores.Location = new System.Drawing.Point(100, 29);
-            this.txtBuscarArticlesStores.Name = "txtBuscarArticlesStores";
-            this.txtBuscarArticlesStores.Size = new System.Drawing.Size(122, 23);
-            this.txtBuscarArticlesStores.TabIndex = 1;
             // 
             // btnBuscarArticlesStores
             // 
             this.btnBuscarArticlesStores.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnBuscarArticlesStores.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscarArticlesStores.Image")));
             this.btnBuscarArticlesStores.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.btnBuscarArticlesStores.Location = new System.Drawing.Point(239, 24);
+            this.btnBuscarArticlesStores.Location = new System.Drawing.Point(230, 20);
             this.btnBuscarArticlesStores.Name = "btnBuscarArticlesStores";
             this.btnBuscarArticlesStores.Size = new System.Drawing.Size(83, 31);
             this.btnBuscarArticlesStores.TabIndex = 0;
@@ -291,13 +292,13 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnAgregarArticulo;
         private System.Windows.Forms.DataGridView dgvArticles;
-        private System.Windows.Forms.TextBox txtBuscarArticlesStores;
         private System.Windows.Forms.Button btnBuscarArticlesStores;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewImageColumn ColEditar;
         private System.Windows.Forms.DataGridViewImageColumn ColEliminar;
         private System.Windows.Forms.DataGridViewImageColumn ColEditarA;
         private System.Windows.Forms.DataGridViewImageColumn ColEliminarA;
+        private System.Windows.Forms.ComboBox cmbTiendaArticles;
     }
 }
 
