@@ -1,4 +1,4 @@
-﻿namespace SuperZapatosNC
+﻿namespace SuperZapatos
 {
     partial class StoresArticles
     {
@@ -145,6 +145,7 @@
             this.btnAgregarStore.Text = "Agregar";
             this.btnAgregarStore.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAgregarStore.UseVisualStyleBackColor = false;
+            this.btnAgregarStore.Click += new System.EventHandler(this.btnAgregarStore_Click);
             // 
             // tabArticles
             // 
@@ -254,14 +255,14 @@
             this.ColEliminarA.Image = ((System.Drawing.Image)(resources.GetObject("ColEliminarA.Image")));
             this.ColEliminarA.Name = "ColEliminarA";
             // 
-            // Form1
+            // StoresArticles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(736, 450);
             this.Controls.Add(this.tabSuperZapatos);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Form1";
+            this.Name = "StoresArticles";
             this.Text = "Super Zapatos";
             this.tabSuperZapatos.ResumeLayout(false);
             this.tabStore.ResumeLayout(false);

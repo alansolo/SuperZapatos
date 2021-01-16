@@ -31,13 +31,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AgregarEditarStore));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtAddressStore = new System.Windows.Forms.TextBox();
+            this.lblAddressStore = new System.Windows.Forms.Label();
+            this.txtNameStore = new System.Windows.Forms.TextBox();
+            this.lblNameStore = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnCancelarStore = new System.Windows.Forms.Button();
             this.btnGuardarStore = new System.Windows.Forms.Button();
-            this.lblNameStore = new System.Windows.Forms.Label();
-            this.txtNameStore = new System.Windows.Forms.TextBox();
-            this.lblAddressStore = new System.Windows.Forms.Label();
-            this.txtAddressStore = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -70,6 +70,38 @@
             this.panel1.Size = new System.Drawing.Size(295, 89);
             this.panel1.TabIndex = 0;
             // 
+            // txtAddressStore
+            // 
+            this.txtAddressStore.Location = new System.Drawing.Point(109, 45);
+            this.txtAddressStore.Name = "txtAddressStore";
+            this.txtAddressStore.Size = new System.Drawing.Size(149, 23);
+            this.txtAddressStore.TabIndex = 1;
+            // 
+            // lblAddressStore
+            // 
+            this.lblAddressStore.AutoSize = true;
+            this.lblAddressStore.Location = new System.Drawing.Point(25, 48);
+            this.lblAddressStore.Name = "lblAddressStore";
+            this.lblAddressStore.Size = new System.Drawing.Size(60, 15);
+            this.lblAddressStore.TabIndex = 0;
+            this.lblAddressStore.Text = "Direccion:";
+            // 
+            // txtNameStore
+            // 
+            this.txtNameStore.Location = new System.Drawing.Point(109, 16);
+            this.txtNameStore.Name = "txtNameStore";
+            this.txtNameStore.Size = new System.Drawing.Size(149, 23);
+            this.txtNameStore.TabIndex = 0;
+            // 
+            // lblNameStore
+            // 
+            this.lblNameStore.AutoSize = true;
+            this.lblNameStore.Location = new System.Drawing.Point(25, 19);
+            this.lblNameStore.Name = "lblNameStore";
+            this.lblNameStore.Size = new System.Drawing.Size(54, 15);
+            this.lblNameStore.TabIndex = 0;
+            this.lblNameStore.Text = "Nombre:";
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.btnCancelarStore);
@@ -82,53 +114,25 @@
             // 
             // btnCancelarStore
             // 
-            this.btnCancelarStore.Location = new System.Drawing.Point(161, 11);
+            this.btnCancelarStore.Location = new System.Drawing.Point(161, 7);
             this.btnCancelarStore.Name = "btnCancelarStore";
             this.btnCancelarStore.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelarStore.TabIndex = 1;
+            this.btnCancelarStore.TabIndex = 3;
             this.btnCancelarStore.Text = "Cancelar";
+            this.btnCancelarStore.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCancelarStore.UseVisualStyleBackColor = true;
+            this.btnCancelarStore.Click += new System.EventHandler(this.btnCancelarStore_Click);
             // 
             // btnGuardarStore
             // 
-            this.btnGuardarStore.Location = new System.Drawing.Point(57, 11);
+            this.btnGuardarStore.Location = new System.Drawing.Point(57, 7);
             this.btnGuardarStore.Name = "btnGuardarStore";
             this.btnGuardarStore.Size = new System.Drawing.Size(75, 23);
-            this.btnGuardarStore.TabIndex = 0;
+            this.btnGuardarStore.TabIndex = 2;
             this.btnGuardarStore.Text = "Guardar";
+            this.btnGuardarStore.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnGuardarStore.UseVisualStyleBackColor = true;
-            // 
-            // lblNameStore
-            // 
-            this.lblNameStore.AutoSize = true;
-            this.lblNameStore.Location = new System.Drawing.Point(25, 19);
-            this.lblNameStore.Name = "lblNameStore";
-            this.lblNameStore.Size = new System.Drawing.Size(54, 15);
-            this.lblNameStore.TabIndex = 0;
-            this.lblNameStore.Text = "Nombre:";
-            // 
-            // txtNameStore
-            // 
-            this.txtNameStore.Location = new System.Drawing.Point(109, 16);
-            this.txtNameStore.Name = "txtNameStore";
-            this.txtNameStore.Size = new System.Drawing.Size(149, 23);
-            this.txtNameStore.TabIndex = 1;
-            // 
-            // lblAddressStore
-            // 
-            this.lblAddressStore.AutoSize = true;
-            this.lblAddressStore.Location = new System.Drawing.Point(25, 48);
-            this.lblAddressStore.Name = "lblAddressStore";
-            this.lblAddressStore.Size = new System.Drawing.Size(60, 15);
-            this.lblAddressStore.TabIndex = 0;
-            this.lblAddressStore.Text = "Direccion:";
-            // 
-            // txtAddressStore
-            // 
-            this.txtAddressStore.Location = new System.Drawing.Point(109, 45);
-            this.txtAddressStore.Name = "txtAddressStore";
-            this.txtAddressStore.Size = new System.Drawing.Size(149, 23);
-            this.txtAddressStore.TabIndex = 1;
+            this.btnGuardarStore.Click += new System.EventHandler(this.btnGuardarStore_Click);
             // 
             // AgregarEditarStore
             // 

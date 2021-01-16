@@ -11,12 +11,14 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinForm_SuperZapatos;
 
-namespace SuperZapatosNC
+namespace SuperZapatos
 {
     public partial class StoresArticles : Form
     {
         object listStores;
+        object listArticles;
         public StoresArticles()
         {
             InitializeComponent();
@@ -87,7 +89,7 @@ namespace SuperZapatosNC
                     {
                         var total_elements = objetoJson["total_elements"];
                         var stores = objetoJson["articles"];
-                        listStores = (from a in stores
+                        listArticles = (from a in stores
                                       select new
                                       {
                                           id = a["id"],
@@ -99,7 +101,7 @@ namespace SuperZapatosNC
                                           store_name = a["store_name"]
                                       }).ToList();
 
-                        dgvArticles.DataSource = listStores;
+                        dgvArticles.DataSource = listArticles;
                         dgvArticles.Refresh();
                     }
                     else
@@ -133,7 +135,7 @@ namespace SuperZapatosNC
                     {
                         var total_elements = objetoJson["total_elements"];
                         var stores = objetoJson["articles"];
-                        listStores = (from a in stores
+                        listArticles = (from a in stores
                                       select new
                                       {
                                           id = a["id"],
@@ -145,7 +147,7 @@ namespace SuperZapatosNC
                                           store_name = a["store_name"]
                                       }).ToList();
 
-                        dgvArticles.DataSource = listStores;
+                        dgvArticles.DataSource = listArticles;
                         dgvArticles.Refresh();
                     }
                     else
@@ -158,6 +160,20 @@ namespace SuperZapatosNC
             catch (Exception ex)
             {
 
+            }
+        }
+        private void btnAgregarStore_Click(object sender, EventArgs e)
+        {
+            AgregarEditarStore agregarStore = new AgregarEditarStore();
+            agregarStore.ShowDialog();
+
+            if(agregarStore.esGuardar)
+            {
+                var store = (dynamic)new JObject();
+                store.name = agregarStore.nameStore;
+                store.address = agregarStore.addressStore;
+
+                AddStore(store);
             }
         }
         private void btnBuscarArticlesStores_Click(object sender, EventArgs e)
@@ -189,9 +205,45 @@ namespace SuperZapatosNC
 
             }
         }
-        private void AddStore(object store)
+        private void AddStore(JObject store)
         {
+            try 
+            {
+                //CARGAR STORES
+                HttpClient client = new HttpClient();
+                var content = new StringContent(store.ToString(), Encoding.UTF8, "application/json");
+                var responseTask = client.PostAsync(ConfigurationManager.AppSettings["ApiStoresAdd"], content);
+                responseTask.Wait();
 
+                if (responseTask.Result.IsSuccessStatusCode)
+                {
+                    var respuestaString = responseTask.Result.Content.ReadAsStringAsync();
+                    respuestaString.Wait();
+                    JObject objetoJson = JObject.Parse(respuestaString.Result);
+                    var success = objetoJson["success"];
+                    if ((bool)success)
+                    {
+                        var total_elements = objetoJson["total_elements"];
+                        var stores = objetoJson["stores"];
+                        listStores = (from a in stores
+                                      select new
+                                      {
+                                          id = a["id"],
+                                          name = a["name"],
+                                          address = a["address"]
+                                      }).ToList();
+
+                        dgvStore.DataSource = listStores;
+                        dgvStore.Refresh();
+
+                        MessageBox.Show("Se agrego la Tienda de forma correcta.", "Agregar Tienda", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
         private void DeleteStore(int id)
         {
@@ -228,7 +280,7 @@ namespace SuperZapatosNC
                 }
             }
         }
-        private void EditStore(int id, object store)
+        private void EditStore(int id, JObject store)
         {
 
         }
