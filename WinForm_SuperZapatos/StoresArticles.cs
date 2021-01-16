@@ -164,7 +164,7 @@ namespace SuperZapatos
         }
         private void btnAgregarStore_Click(object sender, EventArgs e)
         {
-            AgregarEditarStore agregarStore = new AgregarEditarStore();
+            AgregarEditarStore agregarStore = new AgregarEditarStore(AgregarEditarStore.Tipo.Add, "", "");
             agregarStore.ShowDialog();
 
             if(agregarStore.esGuardar)
@@ -197,6 +197,21 @@ namespace SuperZapatos
             //EDITAR STORE
             if (e.ColumnIndex == 0)
             {
+                int idEdit = Convert.ToInt32(dgvStore.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                string nameStore = dgvStore.Rows[e.RowIndex].Cells["name"].Value.ToString();
+                string addressStore = dgvStore.Rows[e.RowIndex].Cells["address"].Value.ToString();
+
+                AgregarEditarStore agregarStore = new AgregarEditarStore(AgregarEditarStore.Tipo.Edit, nameStore, addressStore);
+                agregarStore.ShowDialog();
+
+                if (agregarStore.esGuardar)
+                {
+                    var store = (dynamic)new JObject();
+                    store.name = agregarStore.nameStore;
+                    store.address = agregarStore.addressStore;
+
+                    EditStore(idEdit, store);
+                }
 
             }
             //ELIMINAR STORE
@@ -291,7 +306,41 @@ namespace SuperZapatos
         }
         private void EditStore(int id, JObject store)
         {
+            //ELIMINAR STORES
+            HttpClient client = new HttpClient();
+            var content = new StringContent(store.ToString(), Encoding.UTF8, "application/json");
+            var responseTask = client.PutAsync(ConfigurationManager.AppSettings["ApiStoresEdit"], content);
+            responseTask.Wait();
 
+            if (responseTask.Result.IsSuccessStatusCode)
+            {
+                var respuestaString = responseTask.Result.Content.ReadAsStringAsync();
+                respuestaString.Wait();
+                JObject objetoJson = JObject.Parse(respuestaString.Result);
+                var success = objetoJson["success"];
+                if ((bool)success)
+                {
+                    var total_elements = objetoJson["total_elements"];
+                    var stores = objetoJson["stores"];
+                    listStores = (from a in stores
+                                  select new
+                                  {
+                                      id = a["id"],
+                                      name = a["name"],
+                                      address = a["address"]
+                                  }).ToList();
+
+                    dgvStore.DataSource = listStores;
+                    dgvStore.Refresh();
+
+                    MessageBox.Show("Se edito la Tienda de forma correcta.", "Eliminar Tienda", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    var error_code = objetoJson["error_code"];
+                    var stores = objetoJson["stores"];
+                }
+            }
         }
     }
 }

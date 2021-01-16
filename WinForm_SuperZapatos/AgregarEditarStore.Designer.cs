@@ -36,6 +36,7 @@
             this.txtNameStore = new System.Windows.Forms.TextBox();
             this.lblNameStore = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnEditarStore = new System.Windows.Forms.Button();
             this.btnCancelarStore = new System.Windows.Forms.Button();
             this.btnGuardarStore = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
@@ -104,6 +105,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.btnEditarStore);
             this.panel2.Controls.Add(this.btnCancelarStore);
             this.panel2.Controls.Add(this.btnGuardarStore);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -112,11 +114,26 @@
             this.panel2.Size = new System.Drawing.Size(295, 38);
             this.panel2.TabIndex = 1;
             // 
+            // btnEditarStore
+            // 
+            this.btnEditarStore.Image = ((System.Drawing.Image)(resources.GetObject("btnEditarStore.Image")));
+            this.btnEditarStore.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnEditarStore.Location = new System.Drawing.Point(57, 5);
+            this.btnEditarStore.Name = "btnEditarStore";
+            this.btnEditarStore.Size = new System.Drawing.Size(85, 30);
+            this.btnEditarStore.TabIndex = 2;
+            this.btnEditarStore.Text = "Editar";
+            this.btnEditarStore.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEditarStore.UseVisualStyleBackColor = true;
+            this.btnEditarStore.Click += new System.EventHandler(this.btnEditarStore_Click);
+            // 
             // btnCancelarStore
             // 
-            this.btnCancelarStore.Location = new System.Drawing.Point(161, 7);
+            this.btnCancelarStore.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelarStore.Image")));
+            this.btnCancelarStore.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCancelarStore.Location = new System.Drawing.Point(162, 5);
             this.btnCancelarStore.Name = "btnCancelarStore";
-            this.btnCancelarStore.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelarStore.Size = new System.Drawing.Size(85, 30);
             this.btnCancelarStore.TabIndex = 3;
             this.btnCancelarStore.Text = "Cancelar";
             this.btnCancelarStore.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -125,9 +142,11 @@
             // 
             // btnGuardarStore
             // 
+            this.btnGuardarStore.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardarStore.Image")));
+            this.btnGuardarStore.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnGuardarStore.Location = new System.Drawing.Point(57, 5);
             this.btnGuardarStore.Name = "btnGuardarStore";
-            this.btnGuardarStore.Size = new System.Drawing.Size(88, 25);
+            this.btnGuardarStore.Size = new System.Drawing.Size(85, 30);
             this.btnGuardarStore.TabIndex = 2;
             this.btnGuardarStore.Text = "Guardar";
             this.btnGuardarStore.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -165,6 +184,7 @@
         private System.Windows.Forms.Label lblAddressStore;
         private System.Windows.Forms.TextBox txtNameStore;
         private System.Windows.Forms.Label lblNameStore;
+        private System.Windows.Forms.Button btnEditarStore;
     }
 }
 
