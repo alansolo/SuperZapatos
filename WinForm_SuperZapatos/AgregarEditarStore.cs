@@ -23,6 +23,7 @@ namespace WinForm_SuperZapatos
         public AgregarEditarStore(Tipo tipo, string nameStore, string addressStore)
         {
             InitializeComponent();
+
             this.esGuardar = false;
             this.nameStore = string.Empty;
             this.addressStore = string.Empty;
@@ -61,12 +62,6 @@ namespace WinForm_SuperZapatos
 
             this.Close();
         }
-        private void btnCancelarStore_Click(object sender, EventArgs e)
-        {
-            this.esGuardar = false;
-
-            this.Close();
-        }
         private void btnEditarStore_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtNameStore.Text))
@@ -84,6 +79,12 @@ namespace WinForm_SuperZapatos
             this.addressStore = txtAddressStore.Text.Trim();
 
             this.esGuardar = true;
+
+            this.Close();
+        }
+        private void btnCancelarStore_Click(object sender, EventArgs e)
+        {
+            this.esGuardar = false;
 
             this.Close();
         }

@@ -188,6 +188,7 @@ namespace SuperZapatos
         {
             //AGREGAR STORE
             AgregarEditarStore agregarStore = new AgregarEditarStore(AgregarEditarStore.Tipo.Add, "", "");
+            agregarStore.Text = "Agregar Tienda";
             agregarStore.ShowDialog();
 
             if(agregarStore.esGuardar)
@@ -234,6 +235,7 @@ namespace SuperZapatos
                 string addressStore = dgvStore.Rows[e.RowIndex].Cells["address"].Value.ToString();
 
                 AgregarEditarStore agregarStore = new AgregarEditarStore(AgregarEditarStore.Tipo.Edit, nameStore, addressStore);
+                agregarStore.Text = "Editar Store";
                 agregarStore.ShowDialog();
 
                 if (agregarStore.esGuardar)
@@ -338,6 +340,187 @@ namespace SuperZapatos
             }
         }
         private void EditStore(int id, JObject store)
+        {
+            //EDITAR STORES
+            HttpClient client = new HttpClient();
+            var content = new StringContent(store.ToString(), Encoding.UTF8, "application/json");
+            var responseTask = client.PutAsync(ConfigurationManager.AppSettings["ApiStoresEdit"] + "/" + id, content);
+            responseTask.Wait();
+
+            if (responseTask.Result.IsSuccessStatusCode)
+            {
+                var respuestaString = responseTask.Result.Content.ReadAsStringAsync();
+                respuestaString.Wait();
+                JObject objetoJson = JObject.Parse(respuestaString.Result);
+                var success = objetoJson["success"];
+                if ((bool)success)
+                {
+                    var total_elements = objetoJson["total_elements"];
+                    var stores = objetoJson["stores"];
+                    listStores = (from a in stores
+                                  select new
+                                  {
+                                      id = a["id"],
+                                      name = a["name"],
+                                      address = a["address"]
+                                  }).ToList();
+
+                    dgvStore.DataSource = listStores;
+                    dgvStore.Refresh();
+
+                    MessageBox.Show("Se edito la Tienda de forma correcta.", "Eliminar Tienda", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    var error_code = objetoJson["error_code"];
+                    var stores = objetoJson["stores"];
+                }
+            }
+        }
+        private void btnAgregarArticulo_Click(object sender, EventArgs e)
+        {
+            //AGREGAR STORE
+            AgregarEditarArticles agregarArticles = new AgregarEditarArticles(AgregarEditarArticles.Tipo.Add, "", "", 0, 0, 0, 0, listStores);
+            agregarArticles.Text = "Agregar Articulo";
+            agregarArticles.ShowDialog();
+
+            if (agregarArticles.esGuardar)
+            {
+                var article = (dynamic)new JObject();
+                article.name = agregarArticles.nameArticles;
+                article.description = agregarArticles.descriptionArticles;
+                article.price = agregarArticles.priceArticles;
+                article.total_in_shelf = agregarArticles.totalShelfArticles;
+                article.total_in_vault = agregarArticles.totalVaultArticles;
+                article.store_id = agregarArticles.idStore;
+
+                AddArticles(article);
+            }
+        }
+        private void dgvArticles_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //EDITAR STORE
+            if (e.ColumnIndex == 0)
+            {
+                int idEdit = Convert.ToInt32(dgvStore.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                string nameArticles = dgvStore.Rows[e.RowIndex].Cells["name"].Value.ToString();
+                string descriptionArticles = dgvStore.Rows[e.RowIndex].Cells["description"].Value.ToString();
+                decimal priceArticles = Convert.ToDecimal(dgvStore.Rows[e.RowIndex].Cells["price"].Value.ToString());
+                int totalShelfArticles = Convert.ToInt32(dgvStore.Rows[e.RowIndex].Cells["total_in_shelf"].Value.ToString());
+                int totalVaultArticles = Convert.ToInt32(dgvStore.Rows[e.RowIndex].Cells["total_in_vault"].Value.ToString());
+                int storeIdArticles = Convert.ToInt32(dgvStore.Rows[e.RowIndex].Cells["store_id"].Value.ToString());
+
+                //AGREGAR STORE
+                AgregarEditarArticles agregarArticles = new AgregarEditarArticles(AgregarEditarArticles.Tipo.Edit, nameArticles, 
+                                                                                    descriptionArticles, priceArticles, totalShelfArticles, 
+                                                                                    totalVaultArticles, storeIdArticles, listStores);
+                agregarArticles.Text = "Editar Articulo";
+                agregarArticles.ShowDialog();
+
+                if (agregarArticles.esGuardar)
+                {
+                    var article = (dynamic)new JObject();
+                    article.name = agregarArticles.nameArticles;
+                    article.description = agregarArticles.descriptionArticles;
+                    article.price = agregarArticles.priceArticles;
+                    article.total_in_shelf = agregarArticles.totalShelfArticles;
+                    article.total_in_vault = agregarArticles.totalVaultArticles;
+                    article.store_id = agregarArticles.idStore;
+
+                    EditArticles(idEdit, article);
+                }
+            }
+            //ELIMINAR STORE
+            else if (e.ColumnIndex == 1)
+            {
+                DialogResult respuestaEliminar = MessageBox.Show("¿Estas seguro de que quieres eliminar el Articulo?", "Eliminar Articulo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (respuestaEliminar.ToString().ToUpper() == "YES")
+                {
+                    int idDelete = Convert.ToInt32(dgvStore.Rows[e.RowIndex].Cells["id"].Value.ToString());
+
+                    DeleteArticles(idDelete);
+                }
+            }
+        }
+        private void AddArticles(JObject store)
+        {
+            try
+            {
+                //CARGAR STORES
+                HttpClient client = new HttpClient();
+                var content = new StringContent(store.ToString(), Encoding.UTF8, "application/json");
+                var responseTask = client.PostAsync(ConfigurationManager.AppSettings["ApiStoresAdd"], content);
+                responseTask.Wait();
+
+                if (responseTask.Result.IsSuccessStatusCode)
+                {
+                    var respuestaString = responseTask.Result.Content.ReadAsStringAsync();
+                    respuestaString.Wait();
+                    JObject objetoJson = JObject.Parse(respuestaString.Result);
+                    var success = objetoJson["success"];
+                    if ((bool)success)
+                    {
+                        var total_elements = objetoJson["total_elements"];
+                        var stores = objetoJson["stores"];
+                        listStores = (from a in stores
+                                      select new
+                                      {
+                                          id = a["id"],
+                                          name = a["name"],
+                                          address = a["address"]
+                                      }).ToList();
+
+                        dgvStore.DataSource = listStores;
+                        dgvStore.Refresh();
+
+                        MessageBox.Show("Se agrego la Tienda de forma correcta.", "Agregar Tienda", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+        private void DeleteArticles(int id)
+        {
+            //ELIMINAR STORES
+            HttpClient client = new HttpClient();
+            var responseTask = client.DeleteAsync(ConfigurationManager.AppSettings["ApiStoresDelete"] + "/" + id);
+            responseTask.Wait();
+
+            if (responseTask.Result.IsSuccessStatusCode)
+            {
+                var respuestaString = responseTask.Result.Content.ReadAsStringAsync();
+                respuestaString.Wait();
+                JObject objetoJson = JObject.Parse(respuestaString.Result);
+                var success = objetoJson["success"];
+                if ((bool)success)
+                {
+                    var total_elements = objetoJson["total_elements"];
+                    var stores = objetoJson["stores"];
+                    listStores = (from a in stores
+                                  select new
+                                  {
+                                      id = a["id"],
+                                      name = a["name"],
+                                      address = a["address"]
+                                  }).ToList();
+
+                    dgvStore.DataSource = listStores;
+                    dgvStore.Refresh();
+
+                    MessageBox.Show("Se elimino la Tienda de forma correcta.", "Eliminar Tienda", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    var error_code = objetoJson["error_code"];
+                    var stores = objetoJson["stores"];
+                }
+            }
+        }
+        private void EditArticles(int id, JObject store)
         {
             //EDITAR STORES
             HttpClient client = new HttpClient();
