@@ -110,9 +110,9 @@ namespace SuperZapatos
                     if ((bool)success)
                     {
                         var total_elements = objetoJson["total_elements"];
-                        var stores = objetoJson["articles"];
-                        listArticles = (from a in stores
-                                      select new
+                        var articles = objetoJson["articles"];
+                        listArticles = (from a in articles
+                                        select new
                                       {
                                           id = a["id"],
                                           name = a["name"],
@@ -295,6 +295,11 @@ namespace SuperZapatos
 
                         MessageBox.Show("Se agrego la Tienda de forma correcta.", "Agregar Tienda", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
+                    else
+                    {
+                        var error_code = objetoJson["error_code"];
+                        var stores = objetoJson["stores"];
+                    }
                 }
             }
             catch(Exception ex)
@@ -368,7 +373,7 @@ namespace SuperZapatos
                     dgvStore.DataSource = listStores;
                     dgvStore.Refresh();
 
-                    MessageBox.Show("Se edito la Tienda de forma correcta.", "Eliminar Tienda", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Se edito la Tienda de forma correcta.", "Editar Tienda", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
@@ -443,14 +448,14 @@ namespace SuperZapatos
                 }
             }
         }
-        private void AddArticles(JObject store)
+        private void AddArticles(JObject article)
         {
             try
             {
                 //CARGAR STORES
                 HttpClient client = new HttpClient();
-                var content = new StringContent(store.ToString(), Encoding.UTF8, "application/json");
-                var responseTask = client.PostAsync(ConfigurationManager.AppSettings["ApiStoresAdd"], content);
+                var content = new StringContent(article.ToString(), Encoding.UTF8, "application/json");
+                var responseTask = client.PostAsync(ConfigurationManager.AppSettings["ApiArticlesAdd"], content);
                 responseTask.Wait();
 
                 if (responseTask.Result.IsSuccessStatusCode)
@@ -462,19 +467,28 @@ namespace SuperZapatos
                     if ((bool)success)
                     {
                         var total_elements = objetoJson["total_elements"];
-                        var stores = objetoJson["stores"];
-                        listStores = (from a in stores
-                                      select new
+                        var articles = objetoJson["articles"];
+                        listArticles = (from a in articles
+                                        select new
                                       {
                                           id = a["id"],
                                           name = a["name"],
-                                          address = a["address"]
+                                          description = a["description"],
+                                          price = a["price"],
+                                          total_in_shelf = a["total_in_shelf"],
+                                          total_in_vault = a["total_in_vault"],
+                                          store_name = a["store_name"]
                                       }).ToList();
 
-                        dgvStore.DataSource = listStores;
-                        dgvStore.Refresh();
+                        dgvArticles.DataSource = listArticles;
+                        dgvArticles.Refresh();
 
-                        MessageBox.Show("Se agrego la Tienda de forma correcta.", "Agregar Tienda", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Se agrego el Articulo de forma correcta.", "Agregar Articulo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        var error_code = objetoJson["error_code"];
+                        var stores = objetoJson["stores"];
                     }
                 }
             }
@@ -487,7 +501,7 @@ namespace SuperZapatos
         {
             //ELIMINAR STORES
             HttpClient client = new HttpClient();
-            var responseTask = client.DeleteAsync(ConfigurationManager.AppSettings["ApiStoresDelete"] + "/" + id);
+            var responseTask = client.DeleteAsync(ConfigurationManager.AppSettings["ApiArticlesDelete"] + "/" + id);
             responseTask.Wait();
 
             if (responseTask.Result.IsSuccessStatusCode)
@@ -499,19 +513,23 @@ namespace SuperZapatos
                 if ((bool)success)
                 {
                     var total_elements = objetoJson["total_elements"];
-                    var stores = objetoJson["stores"];
-                    listStores = (from a in stores
-                                  select new
-                                  {
-                                      id = a["id"],
-                                      name = a["name"],
-                                      address = a["address"]
-                                  }).ToList();
+                    var articles = objetoJson["stores"];
+                    listArticles = (from a in articles
+                                    select new
+                                    {
+                                        id = a["id"],
+                                        name = a["name"],
+                                        description = a["description"],
+                                        price = a["price"],
+                                        total_in_shelf = a["total_in_shelf"],
+                                        total_in_vault = a["total_in_vault"],
+                                        store_name = a["store_name"]
+                                    }).ToList();
 
-                    dgvStore.DataSource = listStores;
-                    dgvStore.Refresh();
+                    dgvArticles.DataSource = listArticles;
+                    dgvArticles.Refresh();
 
-                    MessageBox.Show("Se elimino la Tienda de forma correcta.", "Eliminar Tienda", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Se elimino el Articulo de forma correcta.", "Eliminar Articulo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
@@ -520,12 +538,12 @@ namespace SuperZapatos
                 }
             }
         }
-        private void EditArticles(int id, JObject store)
+        private void EditArticles(int id, JObject article)
         {
             //EDITAR STORES
             HttpClient client = new HttpClient();
-            var content = new StringContent(store.ToString(), Encoding.UTF8, "application/json");
-            var responseTask = client.PutAsync(ConfigurationManager.AppSettings["ApiStoresEdit"] + "/" + id, content);
+            var content = new StringContent(article.ToString(), Encoding.UTF8, "application/json");
+            var responseTask = client.PutAsync(ConfigurationManager.AppSettings["ApiArticlesEdit"] + "/" + id, content);
             responseTask.Wait();
 
             if (responseTask.Result.IsSuccessStatusCode)
@@ -537,19 +555,23 @@ namespace SuperZapatos
                 if ((bool)success)
                 {
                     var total_elements = objetoJson["total_elements"];
-                    var stores = objetoJson["stores"];
-                    listStores = (from a in stores
-                                  select new
-                                  {
-                                      id = a["id"],
-                                      name = a["name"],
-                                      address = a["address"]
-                                  }).ToList();
+                    var articles = objetoJson["articles"];
+                    listArticles = (from a in articles
+                                    select new
+                                    {
+                                        id = a["id"],
+                                        name = a["name"],
+                                        description = a["description"],
+                                        price = a["price"],
+                                        total_in_shelf = a["total_in_shelf"],
+                                        total_in_vault = a["total_in_vault"],
+                                        store_name = a["store_name"]
+                                    }).ToList();
 
-                    dgvStore.DataSource = listStores;
-                    dgvStore.Refresh();
+                    dgvArticles.DataSource = listArticles;
+                    dgvArticles.Refresh();
 
-                    MessageBox.Show("Se edito la Tienda de forma correcta.", "Eliminar Tienda", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Se edito el Articulo de forma correcta.", "Editar Articulo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
