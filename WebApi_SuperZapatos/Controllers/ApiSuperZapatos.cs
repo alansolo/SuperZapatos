@@ -284,6 +284,7 @@ namespace WebApi_SuperZapatos.Controllers
                                                  price = a.price,
                                                  total_in_vault = a.total_in_vault,
                                                  total_in_shelf = a.total_in_shelf,
+                                                 store_id = a.store_id,
                                                  store_name = a.store.name
                                              }
                                              ).ToList();
@@ -327,6 +328,8 @@ namespace WebApi_SuperZapatos.Controllers
                 {
                     superZapatos.Articles.Add(articles);
 
+                    superZapatos.SaveChanges();
+
                     superZapatos.Stores.ToList();
                     ListaArticles = superZapatos.Articles.ToList();
                 }
@@ -340,6 +343,7 @@ namespace WebApi_SuperZapatos.Controllers
                                                  price = a.price,
                                                  total_in_vault = a.total_in_vault,
                                                  total_in_shelf = a.total_in_shelf,
+                                                 store_id = a.store_id,
                                                  store_name = a.store.name
                                              }
                                              ).ToList();
@@ -435,6 +439,7 @@ namespace WebApi_SuperZapatos.Controllers
                                                  price = a.price,
                                                  total_in_vault = a.total_in_vault,
                                                  total_in_shelf = a.total_in_shelf,
+                                                 store_id = a.store_id,
                                                  store_name = a.store.name
                                              }
                                              ).ToList();
@@ -518,6 +523,7 @@ namespace WebApi_SuperZapatos.Controllers
                                                  price = a.price,
                                                  total_in_vault = a.total_in_vault,
                                                  total_in_shelf = a.total_in_shelf,
+                                                 store_id = a.store_id,
                                                  store_name = a.store.name
                                              }
                                              ).ToList();
@@ -588,6 +594,7 @@ namespace WebApi_SuperZapatos.Controllers
                                                      price = a.price,
                                                      total_in_vault = a.total_in_vault,
                                                      total_in_shelf = a.total_in_shelf,
+                                                     store_id = a.store_id,
                                                      store_name = a.store.name
                                                  }
                                                  ).ToList();

@@ -19,6 +19,7 @@ namespace SuperZapatos
     {
         object listStores;
         object listArticles;
+        List<JToken> listStoresGlobal;
         public StoresArticles()
         {
             InitializeComponent();
@@ -54,6 +55,8 @@ namespace SuperZapatos
                         var storesCmb = stores.ToList();
                         storesCmb.Add(elementoDefault);
 
+                        listStoresGlobal = stores.ToList();
+
                         listStores = (from a in stores
                                       select new
                                       {
@@ -83,7 +86,37 @@ namespace SuperZapatos
                     else
                     {
                         var error_code = objetoJson["error_code"];
-                        var stores = objetoJson["stores"];
+                        var error_msg = objetoJson["error_msg"];
+
+                        if (Convert.ToInt32(error_code.ToString()) == 404)
+                        {
+                            MessageBox.Show("Registros de Tiendas no encontrados en la Base.", "Buscar Articulos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            dgvStore.DataSource = null;
+                            dgvStore.Refresh();
+
+                            return;
+                        }
+
+                        if (Convert.ToInt32(error_code.ToString()) == 400)
+                        {
+                            MessageBox.Show("Los parametros enviados al servicio son incorrectos.", "Buscar Articulos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            dgvStore.DataSource = null;
+                            dgvStore.Refresh();
+
+                            return;
+                        }
+
+                        if (Convert.ToInt32(error_code.ToString()) == 500)
+                        {
+                            MessageBox.Show("Ocurrio un error al consumir el servicio, intente nuevamente o consulte con el administrador de sistemas.", "Buscar Articulos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            dgvStore.DataSource = null;
+                            dgvStore.Refresh();
+
+                            return;
+                        }
                     }
                 }
             }
@@ -120,16 +153,49 @@ namespace SuperZapatos
                                           price = a["price"],
                                           total_in_shelf = a["total_in_shelf"],
                                           total_in_vault = a["total_in_vault"],
+                                          store_id = a["store_id"],
                                           store_name = a["store_name"]
                                       }).ToList();
 
                         dgvArticles.DataSource = listArticles;
+                        dgvArticles.Columns["store_id"].Visible = false;
                         dgvArticles.Refresh();
                     }
                     else
                     {
                         var error_code = objetoJson["error_code"];
-                        var stores = objetoJson["stores"];
+                        var error_msg = objetoJson["error_msg"];
+
+                        if (Convert.ToInt32(error_code.ToString()) == 404)
+                        {
+                            MessageBox.Show("Registros de Articulos no encontrados en la Base.", "Buscar Articulos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            dgvArticles.DataSource = null;
+                            dgvArticles.Refresh();
+
+                            return;
+                        }
+
+                        if (Convert.ToInt32(error_code.ToString()) == 400)
+                        {
+                            MessageBox.Show("Los parametros enviados al servicio son incorrectos.", "Buscar Articulos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            dgvArticles.DataSource = null;
+                            dgvArticles.Refresh();
+
+                            return;
+                        }
+
+                        if (Convert.ToInt32(error_code.ToString()) == 500)
+                        {
+                            MessageBox.Show("Ocurrio un error al consumir el servicio, intente nuevamente o consulte con el administrador de sistemas.", "Buscar Articulos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            dgvArticles.DataSource = null;
+                            dgvArticles.Refresh();
+
+                            return;
+                        }
+
                     }
                 }
             }
@@ -170,18 +236,54 @@ namespace SuperZapatos
                                       }).ToList();
 
                         dgvArticles.DataSource = listArticles;
+                        dgvArticles.Columns["store_id"].Visible = false;
                         dgvArticles.Refresh();
                     }
                     else
                     {
                         var error_code = objetoJson["error_code"];
-                        var stores = objetoJson["stores"];
+                        var error_msg = objetoJson["error_msg"];
+                        
+                        if(Convert.ToInt32(error_code.ToString()) == 404)
+                        {
+                            MessageBox.Show("Registros no encontrados con la Tienda seleccionada.", "Buscar Articulos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            dgvArticles.DataSource = null;
+                            dgvArticles.Refresh();
+
+                            return;
+                        }
+
+                        if (Convert.ToInt32(error_code.ToString()) == 400)
+                        {
+                            MessageBox.Show("Los parametros enviados al servicio son incorrectos.", "Buscar Articulos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            dgvArticles.DataSource = null;
+                            dgvArticles.Refresh();
+
+                            return;
+                        }
+
+                        if (Convert.ToInt32(error_code.ToString()) == 500)
+                        {
+                            MessageBox.Show("Ocurrio un error al consumir el servicio, intente nuevamente o consulte con el administrador de sistemas.", "Buscar Articulos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            dgvArticles.DataSource = null;
+                            dgvArticles.Refresh();
+
+                            return;
+                        }
                     }
                 }
             }
             catch (Exception ex)
             {
+                MessageBox.Show("Ocurrio un error al consumir el servicio, intente nuevamente o consulte con el administrador de sistemas.", "Buscar Articulos", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                dgvArticles.DataSource = null;
+                dgvArticles.Refresh();
+
+                return;
             }
         }
         private void btnAgregarStore_Click(object sender, EventArgs e)
@@ -217,7 +319,7 @@ namespace SuperZapatos
 
                 if (!esNumero)
                 {
-                    MessageBox.Show("Debe agregar un numero en el campo de Id Tienda", "Buscar Articulos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Debe agregar un numero en el campo de Id Tienda.", "Buscar Articulos", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                     return;
                 }
@@ -407,18 +509,27 @@ namespace SuperZapatos
             //EDITAR STORE
             if (e.ColumnIndex == 0)
             {
-                int idEdit = Convert.ToInt32(dgvStore.Rows[e.RowIndex].Cells["id"].Value.ToString());
-                string nameArticles = dgvStore.Rows[e.RowIndex].Cells["name"].Value.ToString();
-                string descriptionArticles = dgvStore.Rows[e.RowIndex].Cells["description"].Value.ToString();
-                decimal priceArticles = Convert.ToDecimal(dgvStore.Rows[e.RowIndex].Cells["price"].Value.ToString());
-                int totalShelfArticles = Convert.ToInt32(dgvStore.Rows[e.RowIndex].Cells["total_in_shelf"].Value.ToString());
-                int totalVaultArticles = Convert.ToInt32(dgvStore.Rows[e.RowIndex].Cells["total_in_vault"].Value.ToString());
-                int storeIdArticles = Convert.ToInt32(dgvStore.Rows[e.RowIndex].Cells["store_id"].Value.ToString());
+                int idEdit = Convert.ToInt32(dgvArticles.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                string nameArticles = dgvArticles.Rows[e.RowIndex].Cells["name"].Value.ToString();
+                string descriptionArticles = dgvArticles.Rows[e.RowIndex].Cells["description"].Value.ToString();
+                decimal priceArticles = Convert.ToDecimal(dgvArticles.Rows[e.RowIndex].Cells["price"].Value.ToString());
+                int totalShelfArticles = Convert.ToInt32(dgvArticles.Rows[e.RowIndex].Cells["total_in_shelf"].Value.ToString());
+                int totalVaultArticles = Convert.ToInt32(dgvArticles.Rows[e.RowIndex].Cells["total_in_vault"].Value.ToString());
+                int storeIdArticles = Convert.ToInt32(dgvArticles.Rows[e.RowIndex].Cells["store_id"].Value.ToString());
 
+                
+                var selectTienda = (from a in listStoresGlobal
+                                   where a["id"].ToString() == idEdit.ToString()
+                                   select new
+                                   {
+                                       id = a["id"],
+                                       name = a["name"],
+                                       address = a["address"]
+                                   }).FirstOrDefault();
                 //AGREGAR STORE
                 AgregarEditarArticles agregarArticles = new AgregarEditarArticles(AgregarEditarArticles.Tipo.Edit, nameArticles, 
                                                                                     descriptionArticles, priceArticles, totalShelfArticles, 
-                                                                                    totalVaultArticles, storeIdArticles, listStores);
+                                                                                    totalVaultArticles, selectTienda, listStores);
                 agregarArticles.Text = "Editar Articulo";
                 agregarArticles.ShowDialog();
 
@@ -442,7 +553,7 @@ namespace SuperZapatos
 
                 if (respuestaEliminar.ToString().ToUpper() == "YES")
                 {
-                    int idDelete = Convert.ToInt32(dgvStore.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                    int idDelete = Convert.ToInt32(dgvArticles.Rows[e.RowIndex].Cells["id"].Value.ToString());
 
                     DeleteArticles(idDelete);
                 }

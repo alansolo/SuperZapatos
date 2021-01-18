@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -23,7 +24,7 @@ namespace WinForm_SuperZapatos
             Edit
         }
         public AgregarEditarArticles(Tipo tipo, string nameArticles, string descriptionArticles, decimal priceArticles,
-                                        int totalShelfArticles, int totalVaultArticles, int idTienda, object listaTiendaArticles)
+                                        int totalShelfArticles, int totalVaultArticles, object selectTienda, object listaTiendaArticles)
         {
             InitializeComponent();
 
@@ -43,7 +44,8 @@ namespace WinForm_SuperZapatos
             cmbTiendaArticles.DataSource = listaTiendaArticles;
             cmbTiendaArticles.DisplayMember = "name";
             cmbTiendaArticles.ValueMember = "id";
-            cmbTiendaArticles.SelectedValue = idTienda;
+
+            cmbTiendaArticles.SelectedItem = selectTienda;
 
             if (tipo == Tipo.Add)
             {
@@ -89,7 +91,7 @@ namespace WinForm_SuperZapatos
             this.priceArticles = Convert.ToDecimal(txtPriceArticles.Text);
             this.totalShelfArticles = Convert.ToInt32(txtTotalShelfArticles.Text);
             this.totalVaultArticles = Convert.ToInt32(txtTotalVaultArticles.Text);
-            this.idStore = Convert.ToInt32(cmbTiendaArticles.SelectedValue);
+            this.idStore = Convert.ToInt32(cmbTiendaArticles.SelectedValue.ToString());
 
             this.esGuardar = true;
 
