@@ -21,6 +21,7 @@ namespace SuperZapatos
 {
     public partial class StoresArticles : Form
     {
+        #region Variables
         object listStores;
         object listArticles;
         List<JToken> listStoresGlobal;
@@ -35,16 +36,26 @@ namespace SuperZapatos
         const string tituloEditArticle = "Editar Articulo";
 
         private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        #endregion
+        
         public StoresArticles()
         {
             InitializeComponent();
 
+            //CARGAR ARCHIVO DE CONFIGURACION LOG4NET
             LoadLog();
 
+            //CARGAR TIENDAS
             LoadStore();
 
+            //CARGAR ARTICULOS
             LoadArticles();
-        }  
+        }
+        
+        /// <summary>
+        /// METODOS CARGA INICIAL
+        /// </summary>        
+        #region Carga_Datos_Inicial
         public void LoadLog()
         {
             var logRepository = LogManager.GetRepository(Assembly.GetEntryAssembly());
@@ -336,6 +347,12 @@ namespace SuperZapatos
                 log.Error(ex.Message);
             }
         }
+        #endregion
+        
+        /// <summary>
+        /// METODOS TIENDA
+        /// </summary>
+        #region Metodos_Tienda
         private void btnAgregarStore_Click(object sender, EventArgs e)
         {
             //AGREGAR STORE
@@ -632,6 +649,12 @@ namespace SuperZapatos
                 log.Error(ex.Message);
             }
         }
+        #endregion
+        
+        /// <summary>
+        /// METODOS ARTICULOS
+        /// </summary>
+        #region Metodos_Articulos
         private void btnAgregarArticulo_Click(object sender, EventArgs e)
         {
             //AGREGAR STORE
@@ -956,6 +979,6 @@ namespace SuperZapatos
                 log.Error(ex.Message);
             }
         }
-
+        #endregion
     }
 }

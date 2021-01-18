@@ -20,17 +20,15 @@ namespace WebApi_SuperZapatos.Controllers
     [ApiController]
     public class ApiSuperZapatosController : ControllerBase
     {
+        #region Variables
         private string connectionString;
+
         private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-
-        //private readonly ILogger<ServicesSuperZapatos> _logger;
-
-        //public ServicesSuperZapatos(ILogger<ServicesSuperZapatos> logger)
-        //{
-        //    _logger = logger;
-        //}
+        #endregion
+        
         public ApiSuperZapatosController(IConfiguration config)
         {
+            //CARGAR ARCHIVO DE CONFIGURACION LOG4NET
             var logRepository = LogManager.GetRepository(Assembly.GetEntryAssembly());
             XmlConfigurator.Configure(logRepository, new FileInfo("log4net.config"));
 
@@ -43,6 +41,11 @@ namespace WebApi_SuperZapatos.Controllers
                 log.Error(ex.Message);
             }
         }
+        
+        /// <summary>
+        /// METODOS REST API TIENDA
+        /// </summary>
+        #region Metodos_Rest_Tienda
         [HttpGet]
         [Route("services/stores")]
         public StoreResponse Stores()
@@ -284,6 +287,12 @@ namespace WebApi_SuperZapatos.Controllers
 
             return StoreResponse;
         }
+        #endregion
+
+        /// <summary>
+        /// METODOS REST API ARTICULOS
+        /// </summary>
+        #region Metodos_Rest_Articulos
         [HttpGet]
         [Route("services/articles")]
         public ArticlesResponse Articles()
@@ -660,5 +669,6 @@ namespace WebApi_SuperZapatos.Controllers
 
             return ArticlesResponse;
         }
+        #endregion
     }
 }
