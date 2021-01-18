@@ -29,10 +29,10 @@ namespace WebApi_SuperZapatos.Controllers
         //{
         //    _logger = logger;
         //}
-
         public ApiSuperZapatosController(IConfiguration config)
         {
-            LoadLog();
+            var logRepository = LogManager.GetRepository(Assembly.GetEntryAssembly());
+            XmlConfigurator.Configure(logRepository, new FileInfo("log4net.config"));
 
             try
             {
@@ -42,11 +42,6 @@ namespace WebApi_SuperZapatos.Controllers
             {
                 log.Error(ex.Message);
             }
-        }
-        public void LoadLog()
-        {
-            var logRepository = LogManager.GetRepository(Assembly.GetEntryAssembly());
-            XmlConfigurator.Configure(logRepository, new FileInfo("log4net.config"));
         }
         [HttpGet]
         [Route("services/stores")]
