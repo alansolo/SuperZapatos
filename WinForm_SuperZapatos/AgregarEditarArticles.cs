@@ -11,6 +11,7 @@ namespace WinForm_SuperZapatos
 {
     public partial class AgregarEditarArticles : Form
     {
+        #region Variables
         public bool esGuardar;
         public string nameArticles;
         public string descriptionArticles;
@@ -21,11 +22,16 @@ namespace WinForm_SuperZapatos
 
         const string tituloAddArticles = "Agregar Articulo";
         const string tituloEditArticles = "Editar Articulo";
+        #endregion
+
+        #region Enumeraciones
         public enum Tipo
         {
             Add,
             Edit
         }
+        #endregion
+
         public AgregarEditarArticles(Tipo tipo, string nameArticles, string descriptionArticles, decimal priceArticles,
                                         int totalShelfArticles, int totalVaultArticles, object selectTienda, object listaTiendaArticles)
         {
@@ -61,6 +67,11 @@ namespace WinForm_SuperZapatos
                 btnEditarArticles.Visible = true;
             }
         }
+        
+        /// <summary>
+        /// METODOS PARA GUARDAR Y EDITAR ARTICULOS
+        /// </summary>
+        #region Metodos_Guardar_Editar
         private void btnGuardarArticles_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtNameArticles.Text))
@@ -145,5 +156,6 @@ namespace WinForm_SuperZapatos
 
             this.Close();
         }
+        #endregion
     }
 }

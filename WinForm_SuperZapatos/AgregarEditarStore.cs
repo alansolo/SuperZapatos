@@ -12,17 +12,23 @@ namespace WinForm_SuperZapatos
 {
     public partial class AgregarEditarStore : Form
     {
+        #region Variables
         public bool esGuardar;
         public string nameStore;
         public string addressStore;
 
         const string tituloAddStore = "Agregar Tienda";
         const string tituloEditStore = "Editar Tienda";
+        #endregion
+
+        #region Enumeraciones
         public enum Tipo
         {
             Add,
             Edit
         }
+        #endregion
+
         public AgregarEditarStore(Tipo tipo, string nameStore, string addressStore)
         {
             InitializeComponent();
@@ -45,6 +51,11 @@ namespace WinForm_SuperZapatos
                 btnEditarStore.Visible = true;
             }
         }
+
+        /// <summary>
+        /// METODOS PARA GUARDAR Y EDITAR TIENDAS
+        /// </summary>
+        #region Metodos_Guardar_Editar
         private void btnGuardarStore_Click(object sender, EventArgs e)
         {
             if(string.IsNullOrEmpty(txtNameStore.Text))
@@ -91,5 +102,6 @@ namespace WinForm_SuperZapatos
 
             this.Close();
         }
+        #endregion
     }
 }
