@@ -89,6 +89,9 @@ namespace SuperZapatos
                         
                         //CARGAR DATA GRID CON LA LISTA DE STORE 
                         dgvStore.DataSource = listStores;
+                        dgvStore.Columns["id"].HeaderText = "Id";
+                        dgvStore.Columns["name"].HeaderText = "Nombre";
+                        dgvStore.Columns["address"].HeaderText = "Direccion";
                         dgvStore.Refresh();
 
                         //CARGAR COMBO BOX CON LA LISTA DE STORE
@@ -186,6 +189,13 @@ namespace SuperZapatos
 
                         dgvArticles.DataSource = listArticles;
                         dgvArticles.Columns["store_id"].Visible = false;
+                        dgvArticles.Columns["id"].HeaderText = "Id";
+                        dgvArticles.Columns["name"].HeaderText = "Nombre";
+                        dgvArticles.Columns["description"].HeaderText = "Descripcion";
+                        dgvArticles.Columns["price"].HeaderText = "Precio";
+                        dgvArticles.Columns["total_in_shelf"].HeaderText = "Total Estante";
+                        dgvArticles.Columns["total_in_vault"].HeaderText = "Total Boveda";
+                        dgvArticles.Columns["store_name"].HeaderText = "Tienda";
                         dgvArticles.Refresh();
                     }
                     else
@@ -264,11 +274,19 @@ namespace SuperZapatos
                                           price = a["price"],
                                           total_in_shelf = a["total_in_shelf"],
                                           total_in_vault = a["total_in_vault"],
+                                          store_id = a["store_id"],
                                           store_name = a["store_name"]
                                       }).ToList();
 
                         dgvArticles.DataSource = listArticles;
                         dgvArticles.Columns["store_id"].Visible = false;
+                        dgvArticles.Columns["id"].HeaderText = "Id";
+                        dgvArticles.Columns["name"].HeaderText = "Nombre";
+                        dgvArticles.Columns["description"].HeaderText = "Descripcion";
+                        dgvArticles.Columns["price"].HeaderText = "Precio";
+                        dgvArticles.Columns["total_in_shelf"].HeaderText = "Total Estante";
+                        dgvArticles.Columns["total_in_vault"].HeaderText = "Total Boveda";
+                        dgvArticles.Columns["store_name"].HeaderText = "Tienda";
                         dgvArticles.Refresh();
                     }
                     else
@@ -425,6 +443,9 @@ namespace SuperZapatos
                                       }).ToList();
 
                         dgvStore.DataSource = listStores;
+                        dgvStore.Columns["id"].HeaderText = "Id";
+                        dgvStore.Columns["name"].HeaderText = "Nombre";
+                        dgvStore.Columns["address"].HeaderText = "Direccion";
                         dgvStore.Refresh();
 
                         MessageBox.Show("Se agrego la Tienda de forma correcta.", tituloAddStore, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -494,6 +515,9 @@ namespace SuperZapatos
                                       }).ToList();
 
                         dgvStore.DataSource = listStores;
+                        dgvStore.Columns["id"].HeaderText = "Id";
+                        dgvStore.Columns["name"].HeaderText = "Nombre";
+                        dgvStore.Columns["address"].HeaderText = "Direccion";
                         dgvStore.Refresh();
 
                         MessageBox.Show("Se elimino la Tienda de forma correcta.", tituloDeleteStore, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -564,6 +588,9 @@ namespace SuperZapatos
                                       }).ToList();
 
                         dgvStore.DataSource = listStores;
+                        dgvStore.Columns["id"].HeaderText = "Id";
+                        dgvStore.Columns["name"].HeaderText = "Nombre";
+                        dgvStore.Columns["address"].HeaderText = "Direccion";
                         dgvStore.Refresh();
 
                         MessageBox.Show("Se edito la Tienda de forma correcta.", tituloEditStore, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -710,10 +737,19 @@ namespace SuperZapatos
                                           price = a["price"],
                                           total_in_shelf = a["total_in_shelf"],
                                           total_in_vault = a["total_in_vault"],
+                                          store_id = a["store_id"],
                                           store_name = a["store_name"]
                                       }).ToList();
 
                         dgvArticles.DataSource = listArticles;
+                        dgvArticles.Columns["store_id"].Visible = false;
+                        dgvArticles.Columns["id"].HeaderText = "Id";
+                        dgvArticles.Columns["name"].HeaderText = "Nombre";
+                        dgvArticles.Columns["description"].HeaderText = "Descripcion";
+                        dgvArticles.Columns["price"].HeaderText = "Precio";
+                        dgvArticles.Columns["total_in_shelf"].HeaderText = "Total Estante";
+                        dgvArticles.Columns["total_in_vault"].HeaderText = "Total Boveda";
+                        dgvArticles.Columns["store_name"].HeaderText = "Tienda";
                         dgvArticles.Refresh();
 
                         MessageBox.Show("Se agrego el Articulo de forma correcta.", tituloAddArticle, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -773,7 +809,7 @@ namespace SuperZapatos
                     if ((bool)success)
                     {
                         var total_elements = objetoJson["total_elements"];
-                        var articles = objetoJson["stores"];
+                        var articles = objetoJson["articles"];
                         listArticles = (from a in articles
                                         select new
                                         {
@@ -788,6 +824,14 @@ namespace SuperZapatos
                                         }).ToList();
 
                         dgvArticles.DataSource = listArticles;
+                        dgvArticles.Columns["store_id"].Visible = false;
+                        dgvArticles.Columns["id"].HeaderText = "Id";
+                        dgvArticles.Columns["name"].HeaderText = "Nombre";
+                        dgvArticles.Columns["description"].HeaderText = "Descripcion";
+                        dgvArticles.Columns["price"].HeaderText = "Precio";
+                        dgvArticles.Columns["total_in_shelf"].HeaderText = "Total Estante";
+                        dgvArticles.Columns["total_in_vault"].HeaderText = "Total Boveda";
+                        dgvArticles.Columns["store_name"].HeaderText = "Tienda";
                         dgvArticles.Refresh();
 
                         MessageBox.Show("Se elimino el Articulo de forma correcta.", tituloDeleteArticle, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -863,6 +907,14 @@ namespace SuperZapatos
                                         }).ToList();
 
                         dgvArticles.DataSource = listArticles;
+                        dgvArticles.Columns["store_id"].Visible = false;
+                        dgvArticles.Columns["id"].HeaderText = "Id";
+                        dgvArticles.Columns["name"].HeaderText = "Nombre";
+                        dgvArticles.Columns["description"].HeaderText = "Descripcion";
+                        dgvArticles.Columns["price"].HeaderText = "Precio";
+                        dgvArticles.Columns["total_in_shelf"].HeaderText = "Total Estante";
+                        dgvArticles.Columns["total_in_vault"].HeaderText = "Total Boveda";
+                        dgvArticles.Columns["store_name"].HeaderText = "Tienda";
                         dgvArticles.Refresh();
 
                         MessageBox.Show("Se edito el Articulo de forma correcta.", tituloEditArticle, MessageBoxButtons.OK, MessageBoxIcon.Information);
