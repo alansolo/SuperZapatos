@@ -1,13 +1,17 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using log4net;
+using log4net.Config;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Sockets;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -30,14 +34,22 @@ namespace SuperZapatos
         const string tituloDeleteArticle = "Eliminar Articulo";
         const string tituloEditArticle = "Editar Articulo";
 
+        private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         public StoresArticles()
         {
             InitializeComponent();
 
+            LoadLog();
+
             LoadStore();
 
-            LoadArticles();        
+            LoadArticles();
         }  
+        public void LoadLog()
+        {
+            var logRepository = LogManager.GetRepository(Assembly.GetEntryAssembly());
+            XmlConfigurator.Configure(logRepository, new FileInfo("log4net.config"));
+        }
         public void LoadStore()
         {
             try
@@ -136,6 +148,8 @@ namespace SuperZapatos
 
                 dgvStore.DataSource = null;
                 dgvStore.Refresh();
+
+                log.Error(ex.Message);
             }
         }
         public void LoadArticles()
@@ -218,6 +232,8 @@ namespace SuperZapatos
 
                 dgvStore.DataSource = null;
                 dgvStore.Refresh();
+
+                log.Error(ex.Message);
             }
         }
         public void LoadArticles(int id)
@@ -298,6 +314,8 @@ namespace SuperZapatos
 
                 dgvArticles.DataSource = null;
                 dgvArticles.Refresh();
+
+                log.Error(ex.Message);
             }
         }
         private void btnAgregarStore_Click(object sender, EventArgs e)
@@ -444,6 +462,8 @@ namespace SuperZapatos
 
                 dgvStore.DataSource = null;
                 dgvStore.Refresh();
+
+                log.Error(ex.Message);
             }
         }
         private void DeleteStore(int id)
@@ -511,6 +531,8 @@ namespace SuperZapatos
 
                 dgvStore.DataSource = null;
                 dgvStore.Refresh();
+
+                log.Error(ex.Message);
             }
         }
         private void EditStore(int id, JObject store)
@@ -579,6 +601,8 @@ namespace SuperZapatos
 
                 dgvStore.DataSource = null;
                 dgvStore.Refresh();
+
+                log.Error(ex.Message);
             }
         }
         private void btnAgregarArticulo_Click(object sender, EventArgs e)
@@ -727,6 +751,8 @@ namespace SuperZapatos
 
                 dgvStore.DataSource = null;
                 dgvStore.Refresh();
+
+                log.Error(ex.Message);
             }
         }
         private void DeleteArticles(int id)
@@ -799,6 +825,8 @@ namespace SuperZapatos
 
                 dgvStore.DataSource = null;
                 dgvStore.Refresh();
+
+                log.Error(ex.Message);
             }
         }
         private void EditArticles(int id, JObject article)
@@ -872,6 +900,8 @@ namespace SuperZapatos
 
                 dgvStore.DataSource = null;
                 dgvStore.Refresh();
+
+                log.Error(ex.Message);
             }
         }
 

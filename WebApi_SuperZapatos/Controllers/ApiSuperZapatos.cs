@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using BD_SuperZapatos.Models;
+using log4net;
+using log4net.Config;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +21,7 @@ namespace WebApi_SuperZapatos.Controllers
     public class ApiSuperZapatosController : ControllerBase
     {
         private string connectionString;
+        private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         //private readonly ILogger<ServicesSuperZapatos> _logger;
 
@@ -27,9 +32,22 @@ namespace WebApi_SuperZapatos.Controllers
 
         public ApiSuperZapatosController(IConfiguration config)
         {
-            connectionString = config.GetConnectionString("DBSuperZapatos");
-        }
+            LoadLog();
 
+            try
+            {
+                connectionString = config.GetConnectionString("DBSuperZapatos");
+            }
+            catch(Exception ex)
+            {
+                log.Error(ex.Message);
+            }
+        }
+        public void LoadLog()
+        {
+            var logRepository = LogManager.GetRepository(Assembly.GetEntryAssembly());
+            XmlConfigurator.Configure(logRepository, new FileInfo("log4net.config"));
+        }
         [HttpGet]
         [Route("services/stores")]
         public StoreResponse Stores()
@@ -57,6 +75,8 @@ namespace WebApi_SuperZapatos.Controllers
                 StoreResponse.success = false;
                 StoreResponse.error_code = 500;
                 StoreResponse.error_msg = "Server Error";
+
+                log.Error(ex.Message);
             }
 
             return StoreResponse;
@@ -102,6 +122,8 @@ namespace WebApi_SuperZapatos.Controllers
                 StoreResponse.success = false;
                 StoreResponse.error_code = 500;
                 StoreResponse.error_msg = "Server Error";
+
+                log.Error(ex.Message);
             }
 
             return StoreResponse;
@@ -188,6 +210,8 @@ namespace WebApi_SuperZapatos.Controllers
                 StoreResponse.success = false;
                 StoreResponse.error_code = 500;
                 StoreResponse.error_msg = "Server Error";
+
+                log.Error(ex.Message);
             }
 
             return StoreResponse;
@@ -259,6 +283,8 @@ namespace WebApi_SuperZapatos.Controllers
                 StoreResponse.success = false;
                 StoreResponse.error_code = 500;
                 StoreResponse.error_msg = "Server Error";
+
+                log.Error(ex.Message);
             }
 
             return StoreResponse;
@@ -303,6 +329,8 @@ namespace WebApi_SuperZapatos.Controllers
                 ArticlesResponse.success = false;
                 ArticlesResponse.error_code = 500;
                 ArticlesResponse.error_msg = "Server Error";
+
+                log.Error(ex.Message);
             }
 
             return ArticlesResponse;
@@ -362,6 +390,8 @@ namespace WebApi_SuperZapatos.Controllers
                 ArticlesResponse.success = false;
                 ArticlesResponse.error_code = 500;
                 ArticlesResponse.error_msg = "Server Error";
+
+                log.Error(ex.Message);
             }
 
             return ArticlesResponse;
@@ -461,6 +491,8 @@ namespace WebApi_SuperZapatos.Controllers
                 ArticlesResponse.success = false;
                 ArticlesResponse.error_code = 500;
                 ArticlesResponse.error_msg = "Server Error";
+
+                log.Error(ex.Message);
             }
 
             return ArticlesResponse;
@@ -545,6 +577,8 @@ namespace WebApi_SuperZapatos.Controllers
                 ArticlesResponse.success = false;
                 ArticlesResponse.error_code = 500;
                 ArticlesResponse.error_msg = "Server Error";
+
+                log.Error(ex.Message);
             }
 
             return ArticlesResponse;
@@ -625,6 +659,8 @@ namespace WebApi_SuperZapatos.Controllers
                 ArticlesResponse.success = false;
                 ArticlesResponse.error_code = 500;
                 ArticlesResponse.error_msg = "Server Error";
+
+                log.Error(ex.Message);
             }
 
             return ArticlesResponse;
