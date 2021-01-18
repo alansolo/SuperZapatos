@@ -15,6 +15,9 @@ namespace WinForm_SuperZapatos
         public bool esGuardar;
         public string nameStore;
         public string addressStore;
+
+        const string tituloAddStore = "Agregar Tienda";
+        const string tituloEditStore = "Editar Tienda";
         public enum Tipo
         {
             Add,
@@ -46,12 +49,12 @@ namespace WinForm_SuperZapatos
         {
             if(string.IsNullOrEmpty(txtNameStore.Text))
             {
-                MessageBox.Show("Debe agregar el nombre de la tienda.", "Agregar Tienda", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Debe agregar el nombre de la tienda.", tituloAddStore, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if(string.IsNullOrEmpty(txtAddressStore.Text))
             {
-                MessageBox.Show("Debe agregar la direccion de la tienda.", "Agregar Tienda", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Debe agregar la direccion de la tienda.", tituloAddStore, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -66,12 +69,12 @@ namespace WinForm_SuperZapatos
         {
             if (string.IsNullOrEmpty(txtNameStore.Text))
             {
-                MessageBox.Show("Debe agregar el nombre de la tienda.", "Editar Tienda", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Debe agregar el nombre de la tienda.", tituloEditStore, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (string.IsNullOrEmpty(txtAddressStore.Text))
             {
-                MessageBox.Show("Debe agregar la direccion de la tienda.", "Editar Tienda", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Debe agregar la direccion de la tienda.", tituloEditStore, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 

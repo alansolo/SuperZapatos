@@ -20,6 +20,16 @@ namespace SuperZapatos
         object listStores;
         object listArticles;
         List<JToken> listStoresGlobal;
+
+        const string tituloLoadStore = "Cargar Tienda";
+        const string tituloLoadArticles = "Cargar Articulo";
+        const string tituloAddStore = "Agregar Tienda";
+        const string tituloDeleteStore = "Eliminar Tienda";
+        const string tituloEditStore = "Editar Tienda";
+        const string tituloAddArticle = "Agregar Articulo";
+        const string tituloDeleteArticle = "Eliminar Articulo";
+        const string tituloEditArticle = "Editar Articulo";
+
         public StoresArticles()
         {
             InitializeComponent();
@@ -90,7 +100,7 @@ namespace SuperZapatos
 
                         if (Convert.ToInt32(error_code.ToString()) == 404)
                         {
-                            MessageBox.Show("Registros de Tiendas no encontrados en la Base.", "Buscar Articulos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Registros de Tiendas no encontrados en la Base.", tituloLoadStore, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                             dgvStore.DataSource = null;
                             dgvStore.Refresh();
@@ -100,7 +110,7 @@ namespace SuperZapatos
 
                         if (Convert.ToInt32(error_code.ToString()) == 400)
                         {
-                            MessageBox.Show("Los parametros enviados al servicio son incorrectos.", "Buscar Articulos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Los parametros enviados al servicio son incorrectos.", tituloLoadStore, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                             dgvStore.DataSource = null;
                             dgvStore.Refresh();
@@ -110,7 +120,7 @@ namespace SuperZapatos
 
                         if (Convert.ToInt32(error_code.ToString()) == 500)
                         {
-                            MessageBox.Show("Ocurrio un error al consumir el servicio, intente nuevamente o consulte con el administrador de sistemas.", "Buscar Articulos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Ocurrio un error al consumir el servicio, intente nuevamente o consulte con el administrador de sistemas.", tituloLoadStore, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                             dgvStore.DataSource = null;
                             dgvStore.Refresh();
@@ -122,7 +132,10 @@ namespace SuperZapatos
             }
             catch(Exception ex)
             {
+                MessageBox.Show("Ocurrio un error inesperado, intente nuevamente o consulte con el administrador de sistemas.", tituloLoadStore, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                dgvStore.DataSource = null;
+                dgvStore.Refresh();
             }
         }
         public void LoadArticles()
@@ -168,7 +181,7 @@ namespace SuperZapatos
 
                         if (Convert.ToInt32(error_code.ToString()) == 404)
                         {
-                            MessageBox.Show("Registros de Articulos no encontrados en la Base.", "Buscar Articulos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Registros de Articulos no encontrados en la Base.", tituloLoadArticles, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                             dgvArticles.DataSource = null;
                             dgvArticles.Refresh();
@@ -178,7 +191,7 @@ namespace SuperZapatos
 
                         if (Convert.ToInt32(error_code.ToString()) == 400)
                         {
-                            MessageBox.Show("Los parametros enviados al servicio son incorrectos.", "Buscar Articulos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Los parametros enviados al servicio son incorrectos.", tituloLoadArticles, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                             dgvArticles.DataSource = null;
                             dgvArticles.Refresh();
@@ -188,7 +201,7 @@ namespace SuperZapatos
 
                         if (Convert.ToInt32(error_code.ToString()) == 500)
                         {
-                            MessageBox.Show("Ocurrio un error al consumir el servicio, intente nuevamente o consulte con el administrador de sistemas.", "Buscar Articulos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Ocurrio un error al consumir el servicio, intente nuevamente o consulte con el administrador de sistemas.", tituloLoadArticles, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                             dgvArticles.DataSource = null;
                             dgvArticles.Refresh();
@@ -201,7 +214,10 @@ namespace SuperZapatos
             }
             catch (Exception ex)
             {
+                MessageBox.Show("Ocurrio un error inesperado, intente nuevamente o consulte con el administrador de sistemas.", tituloLoadArticles, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                dgvStore.DataSource = null;
+                dgvStore.Refresh();
             }
         }
         public void LoadArticles(int id)
@@ -246,7 +262,7 @@ namespace SuperZapatos
                         
                         if(Convert.ToInt32(error_code.ToString()) == 404)
                         {
-                            MessageBox.Show("Registros no encontrados con la Tienda seleccionada.", "Buscar Articulos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Registros no encontrados con la Tienda seleccionada.", tituloLoadArticles, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                             dgvArticles.DataSource = null;
                             dgvArticles.Refresh();
@@ -256,7 +272,7 @@ namespace SuperZapatos
 
                         if (Convert.ToInt32(error_code.ToString()) == 400)
                         {
-                            MessageBox.Show("Los parametros enviados al servicio son incorrectos.", "Buscar Articulos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Los parametros enviados al servicio son incorrectos.", tituloLoadArticles, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                             dgvArticles.DataSource = null;
                             dgvArticles.Refresh();
@@ -266,7 +282,7 @@ namespace SuperZapatos
 
                         if (Convert.ToInt32(error_code.ToString()) == 500)
                         {
-                            MessageBox.Show("Ocurrio un error al consumir el servicio, intente nuevamente o consulte con el administrador de sistemas.", "Buscar Articulos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Ocurrio un error al consumir el servicio, intente nuevamente o consulte con el administrador de sistemas.", tituloLoadArticles, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                             dgvArticles.DataSource = null;
                             dgvArticles.Refresh();
@@ -278,12 +294,10 @@ namespace SuperZapatos
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocurrio un error al consumir el servicio, intente nuevamente o consulte con el administrador de sistemas.", "Buscar Articulos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Ocurrio un error al consumir el servicio, intente nuevamente o consulte con el administrador de sistemas.", tituloLoadArticles, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 dgvArticles.DataSource = null;
                 dgvArticles.Refresh();
-
-                return;
             }
         }
         private void btnAgregarStore_Click(object sender, EventArgs e)
@@ -395,93 +409,176 @@ namespace SuperZapatos
                         dgvStore.DataSource = listStores;
                         dgvStore.Refresh();
 
-                        MessageBox.Show("Se agrego la Tienda de forma correcta.", "Agregar Tienda", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Se agrego la Tienda de forma correcta.", tituloAddStore, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
                         var error_code = objetoJson["error_code"];
-                        var stores = objetoJson["stores"];
+                        var error_msg = objetoJson["error_msg"];
+
+                        if (Convert.ToInt32(error_code.ToString()) == 400)
+                        {
+                            MessageBox.Show("Los parametros enviados al servicio son incorrectos.", tituloAddStore, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            dgvStore.DataSource = null;
+                            dgvStore.Refresh();
+
+                            return;
+                        }
+
+                        if (Convert.ToInt32(error_code.ToString()) == 500)
+                        {
+                            MessageBox.Show("Ocurrio un error al consumir el servicio, intente nuevamente o consulte con el administrador de sistemas.", tituloAddStore, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            dgvStore.DataSource = null;
+                            dgvStore.Refresh();
+
+                            return;
+                        }
                     }
                 }
             }
             catch(Exception ex)
             {
+                MessageBox.Show("Ocurrio un error inesperado, intente nuevamente o consulte con el administrador de sistemas.", tituloAddStore, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                dgvStore.DataSource = null;
+                dgvStore.Refresh();
             }
         }
         private void DeleteStore(int id)
         {
-            //ELIMINAR STORES
-            HttpClient client = new HttpClient();
-            var responseTask = client.DeleteAsync(ConfigurationManager.AppSettings["ApiStoresDelete"] + "/" + id);
-            responseTask.Wait();
-
-            if (responseTask.Result.IsSuccessStatusCode)
+            try
             {
-                var respuestaString = responseTask.Result.Content.ReadAsStringAsync();
-                respuestaString.Wait();
-                JObject objetoJson = JObject.Parse(respuestaString.Result);
-                var success = objetoJson["success"];
-                if ((bool)success)
-                {
-                    var total_elements = objetoJson["total_elements"];
-                    var stores = objetoJson["stores"];
-                    listStores = (from a in stores
-                                  select new
-                                  {
-                                      id = a["id"],
-                                      name = a["name"],
-                                      address = a["address"]
-                                  }).ToList();
+                //ELIMINAR STORES
+                HttpClient client = new HttpClient();
+                var responseTask = client.DeleteAsync(ConfigurationManager.AppSettings["ApiStoresDelete"] + "/" + id);
+                responseTask.Wait();
 
-                    dgvStore.DataSource = listStores;
-                    dgvStore.Refresh();
-
-                    MessageBox.Show("Se elimino la Tienda de forma correcta.", "Eliminar Tienda", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
+                if (responseTask.Result.IsSuccessStatusCode)
                 {
-                    var error_code = objetoJson["error_code"];
-                    var stores = objetoJson["stores"];
+                    var respuestaString = responseTask.Result.Content.ReadAsStringAsync();
+                    respuestaString.Wait();
+                    JObject objetoJson = JObject.Parse(respuestaString.Result);
+                    var success = objetoJson["success"];
+                    if ((bool)success)
+                    {
+                        var total_elements = objetoJson["total_elements"];
+                        var stores = objetoJson["stores"];
+                        listStores = (from a in stores
+                                      select new
+                                      {
+                                          id = a["id"],
+                                          name = a["name"],
+                                          address = a["address"]
+                                      }).ToList();
+
+                        dgvStore.DataSource = listStores;
+                        dgvStore.Refresh();
+
+                        MessageBox.Show("Se elimino la Tienda de forma correcta.", tituloDeleteStore, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        var error_code = objetoJson["error_code"];
+                        var error_msg = objetoJson["error_msg"];
+
+                        if (Convert.ToInt32(error_code.ToString()) == 400)
+                        {
+                            MessageBox.Show("Los parametros enviados al servicio son incorrectos.", tituloDeleteStore, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            dgvStore.DataSource = null;
+                            dgvStore.Refresh();
+
+                            return;
+                        }
+
+                        if (Convert.ToInt32(error_code.ToString()) == 500)
+                        {
+                            MessageBox.Show("Ocurrio un error al consumir el servicio, intente nuevamente o consulte con el administrador de sistemas.", tituloDeleteStore, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            dgvStore.DataSource = null;
+                            dgvStore.Refresh();
+
+                            return;
+                        }
+                    }
                 }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Ocurrio un error inesperado, intente nuevamente o consulte con el administrador de sistemas.", tituloDeleteStore, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                dgvStore.DataSource = null;
+                dgvStore.Refresh();
             }
         }
         private void EditStore(int id, JObject store)
         {
-            //EDITAR STORES
-            HttpClient client = new HttpClient();
-            var content = new StringContent(store.ToString(), Encoding.UTF8, "application/json");
-            var responseTask = client.PutAsync(ConfigurationManager.AppSettings["ApiStoresEdit"] + "/" + id, content);
-            responseTask.Wait();
-
-            if (responseTask.Result.IsSuccessStatusCode)
+            try
             {
-                var respuestaString = responseTask.Result.Content.ReadAsStringAsync();
-                respuestaString.Wait();
-                JObject objetoJson = JObject.Parse(respuestaString.Result);
-                var success = objetoJson["success"];
-                if ((bool)success)
-                {
-                    var total_elements = objetoJson["total_elements"];
-                    var stores = objetoJson["stores"];
-                    listStores = (from a in stores
-                                  select new
-                                  {
-                                      id = a["id"],
-                                      name = a["name"],
-                                      address = a["address"]
-                                  }).ToList();
+                //EDITAR STORES
+                HttpClient client = new HttpClient();
+                var content = new StringContent(store.ToString(), Encoding.UTF8, "application/json");
+                var responseTask = client.PutAsync(ConfigurationManager.AppSettings["ApiStoresEdit"] + "/" + id, content);
+                responseTask.Wait();
 
-                    dgvStore.DataSource = listStores;
-                    dgvStore.Refresh();
-
-                    MessageBox.Show("Se edito la Tienda de forma correcta.", "Editar Tienda", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
+                if (responseTask.Result.IsSuccessStatusCode)
                 {
-                    var error_code = objetoJson["error_code"];
-                    var stores = objetoJson["stores"];
+                    var respuestaString = responseTask.Result.Content.ReadAsStringAsync();
+                    respuestaString.Wait();
+                    JObject objetoJson = JObject.Parse(respuestaString.Result);
+                    var success = objetoJson["success"];
+                    if ((bool)success)
+                    {
+                        var total_elements = objetoJson["total_elements"];
+                        var stores = objetoJson["stores"];
+                        listStores = (from a in stores
+                                      select new
+                                      {
+                                          id = a["id"],
+                                          name = a["name"],
+                                          address = a["address"]
+                                      }).ToList();
+
+                        dgvStore.DataSource = listStores;
+                        dgvStore.Refresh();
+
+                        MessageBox.Show("Se edito la Tienda de forma correcta.", tituloEditStore, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        var error_code = objetoJson["error_code"];
+                        var error_msg = objetoJson["error_msg"];
+
+                        if (Convert.ToInt32(error_code.ToString()) == 400)
+                        {
+                            MessageBox.Show("Los parametros enviados al servicio son incorrectos.", tituloEditStore, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            dgvStore.DataSource = null;
+                            dgvStore.Refresh();
+
+                            return;
+                        }
+
+                        if (Convert.ToInt32(error_code.ToString()) == 500)
+                        {
+                            MessageBox.Show("Ocurrio un error al consumir el servicio, intente nuevamente o consulte con el administrador de sistemas.", tituloEditStore, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            dgvStore.DataSource = null;
+                            dgvStore.Refresh();
+
+                            return;
+                        }
+                    }
                 }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Ocurrio un error inesperado, intente nuevamente o consulte con el administrador de sistemas.", tituloEditStore, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                dgvStore.DataSource = null;
+                dgvStore.Refresh();
             }
         }
         private void btnAgregarArticulo_Click(object sender, EventArgs e)
@@ -519,7 +616,7 @@ namespace SuperZapatos
 
                 
                 var selectTienda = (from a in listStoresGlobal
-                                   where a["id"].ToString() == idEdit.ToString()
+                                   where a["id"].ToString() == storeIdArticles.ToString()
                                    select new
                                    {
                                        id = a["id"],
@@ -536,6 +633,7 @@ namespace SuperZapatos
                 if (agregarArticles.esGuardar)
                 {
                     var article = (dynamic)new JObject();
+                    article.id = idEdit;
                     article.name = agregarArticles.nameArticles;
                     article.description = agregarArticles.descriptionArticles;
                     article.price = agregarArticles.priceArticles;
@@ -594,102 +692,188 @@ namespace SuperZapatos
                         dgvArticles.DataSource = listArticles;
                         dgvArticles.Refresh();
 
-                        MessageBox.Show("Se agrego el Articulo de forma correcta.", "Agregar Articulo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Se agrego el Articulo de forma correcta.", tituloAddArticle, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
                         var error_code = objetoJson["error_code"];
-                        var stores = objetoJson["stores"];
+                        var error_msg = objetoJson["error_msg"];
+
+                        if (Convert.ToInt32(error_code.ToString()) == 400)
+                        {
+                            MessageBox.Show("Los parametros enviados al servicio son incorrectos.", tituloAddArticle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            dgvStore.DataSource = null;
+                            dgvStore.Refresh();
+
+                            return;
+                        }
+
+                        if (Convert.ToInt32(error_code.ToString()) == 500)
+                        {
+                            MessageBox.Show("Ocurrio un error al consumir el servicio, intente nuevamente o consulte con el administrador de sistemas.", tituloAddArticle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            dgvStore.DataSource = null;
+                            dgvStore.Refresh();
+
+                            return;
+                        }
                     }
                 }
             }
             catch (Exception ex)
             {
+                MessageBox.Show("Ocurrio un error inesperado, intente nuevamente o consulte con el administrador de sistemas.", tituloAddArticle, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                dgvStore.DataSource = null;
+                dgvStore.Refresh();
             }
         }
         private void DeleteArticles(int id)
         {
-            //ELIMINAR STORES
-            HttpClient client = new HttpClient();
-            var responseTask = client.DeleteAsync(ConfigurationManager.AppSettings["ApiArticlesDelete"] + "/" + id);
-            responseTask.Wait();
-
-            if (responseTask.Result.IsSuccessStatusCode)
+            try
             {
-                var respuestaString = responseTask.Result.Content.ReadAsStringAsync();
-                respuestaString.Wait();
-                JObject objetoJson = JObject.Parse(respuestaString.Result);
-                var success = objetoJson["success"];
-                if ((bool)success)
-                {
-                    var total_elements = objetoJson["total_elements"];
-                    var articles = objetoJson["stores"];
-                    listArticles = (from a in articles
-                                    select new
-                                    {
-                                        id = a["id"],
-                                        name = a["name"],
-                                        description = a["description"],
-                                        price = a["price"],
-                                        total_in_shelf = a["total_in_shelf"],
-                                        total_in_vault = a["total_in_vault"],
-                                        store_name = a["store_name"]
-                                    }).ToList();
+                //ELIMINAR STORES
+                HttpClient client = new HttpClient();
+                var responseTask = client.DeleteAsync(ConfigurationManager.AppSettings["ApiArticlesDelete"] + "/" + id);
+                responseTask.Wait();
 
-                    dgvArticles.DataSource = listArticles;
-                    dgvArticles.Refresh();
-
-                    MessageBox.Show("Se elimino el Articulo de forma correcta.", "Eliminar Articulo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
+                if (responseTask.Result.IsSuccessStatusCode)
                 {
-                    var error_code = objetoJson["error_code"];
-                    var stores = objetoJson["stores"];
+                    var respuestaString = responseTask.Result.Content.ReadAsStringAsync();
+                    respuestaString.Wait();
+                    JObject objetoJson = JObject.Parse(respuestaString.Result);
+                    var success = objetoJson["success"];
+                    if ((bool)success)
+                    {
+                        var total_elements = objetoJson["total_elements"];
+                        var articles = objetoJson["stores"];
+                        listArticles = (from a in articles
+                                        select new
+                                        {
+                                            id = a["id"],
+                                            name = a["name"],
+                                            description = a["description"],
+                                            price = a["price"],
+                                            total_in_shelf = a["total_in_shelf"],
+                                            total_in_vault = a["total_in_vault"],
+                                            store_id = a["store_id"],
+                                            store_name = a["store_name"]
+                                        }).ToList();
+
+                        dgvArticles.DataSource = listArticles;
+                        dgvArticles.Refresh();
+
+                        MessageBox.Show("Se elimino el Articulo de forma correcta.", tituloDeleteArticle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        var error_code = objetoJson["error_code"];
+                        var error_msg = objetoJson["error_msg"];
+
+                        if (Convert.ToInt32(error_code.ToString()) == 400)
+                        {
+                            MessageBox.Show("Los parametros enviados al servicio son incorrectos.", tituloDeleteArticle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            dgvStore.DataSource = null;
+                            dgvStore.Refresh();
+
+                            return;
+                        }
+
+                        if (Convert.ToInt32(error_code.ToString()) == 500)
+                        {
+                            MessageBox.Show("Ocurrio un error al consumir el servicio, intente nuevamente o consulte con el administrador de sistemas.", tituloDeleteArticle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            dgvStore.DataSource = null;
+                            dgvStore.Refresh();
+
+                            return;
+                        }
+                    }
                 }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Ocurrio un error inesperado, intente nuevamente o consulte con el administrador de sistemas.", tituloDeleteArticle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                dgvStore.DataSource = null;
+                dgvStore.Refresh();
             }
         }
         private void EditArticles(int id, JObject article)
         {
-            //EDITAR STORES
-            HttpClient client = new HttpClient();
-            var content = new StringContent(article.ToString(), Encoding.UTF8, "application/json");
-            var responseTask = client.PutAsync(ConfigurationManager.AppSettings["ApiArticlesEdit"] + "/" + id, content);
-            responseTask.Wait();
-
-            if (responseTask.Result.IsSuccessStatusCode)
+            try
             {
-                var respuestaString = responseTask.Result.Content.ReadAsStringAsync();
-                respuestaString.Wait();
-                JObject objetoJson = JObject.Parse(respuestaString.Result);
-                var success = objetoJson["success"];
-                if ((bool)success)
-                {
-                    var total_elements = objetoJson["total_elements"];
-                    var articles = objetoJson["articles"];
-                    listArticles = (from a in articles
-                                    select new
-                                    {
-                                        id = a["id"],
-                                        name = a["name"],
-                                        description = a["description"],
-                                        price = a["price"],
-                                        total_in_shelf = a["total_in_shelf"],
-                                        total_in_vault = a["total_in_vault"],
-                                        store_name = a["store_name"]
-                                    }).ToList();
+                //EDITAR STORES
+                HttpClient client = new HttpClient();
+                var content = new StringContent(article.ToString(), Encoding.UTF8, "application/json");
+                var responseTask = client.PutAsync(ConfigurationManager.AppSettings["ApiArticlesEdit"] + "/" + id, content);
+                responseTask.Wait();
 
-                    dgvArticles.DataSource = listArticles;
-                    dgvArticles.Refresh();
-
-                    MessageBox.Show("Se edito el Articulo de forma correcta.", "Editar Articulo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
+                if (responseTask.Result.IsSuccessStatusCode)
                 {
-                    var error_code = objetoJson["error_code"];
-                    var stores = objetoJson["stores"];
+                    var respuestaString = responseTask.Result.Content.ReadAsStringAsync();
+                    respuestaString.Wait();
+                    JObject objetoJson = JObject.Parse(respuestaString.Result);
+                    var success = objetoJson["success"];
+                    if ((bool)success)
+                    {
+                        var total_elements = objetoJson["total_elements"];
+                        var articles = objetoJson["articles"];
+                        listArticles = (from a in articles
+                                        select new
+                                        {
+                                            id = a["id"],
+                                            name = a["name"],
+                                            description = a["description"],
+                                            price = a["price"],
+                                            total_in_shelf = a["total_in_shelf"],
+                                            total_in_vault = a["total_in_vault"],
+                                            store_id = a["store_id"],
+                                            store_name = a["store_name"]
+                                        }).ToList();
+
+                        dgvArticles.DataSource = listArticles;
+                        dgvArticles.Refresh();
+
+                        MessageBox.Show("Se edito el Articulo de forma correcta.", tituloEditArticle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        var error_code = objetoJson["error_code"];
+                        var error_msg = objetoJson["error_msg"];
+
+                        if (Convert.ToInt32(error_code.ToString()) == 400)
+                        {
+                            MessageBox.Show("Los parametros enviados al servicio son incorrectos.", tituloEditArticle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            dgvStore.DataSource = null;
+                            dgvStore.Refresh();
+
+                            return;
+                        }
+
+                        if (Convert.ToInt32(error_code.ToString()) == 500)
+                        {
+                            MessageBox.Show("Ocurrio un error al consumir el servicio, intente nuevamente o consulte con el administrador de sistemas.", tituloEditArticle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            dgvStore.DataSource = null;
+                            dgvStore.Refresh();
+
+                            return;
+                        }
+                    }
                 }
             }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Ocurrio un error inesperado, intente nuevamente o consulte con el administrador de sistemas.", tituloEditArticle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                dgvStore.DataSource = null;
+                dgvStore.Refresh();
+            }
         }
+
     }
 }

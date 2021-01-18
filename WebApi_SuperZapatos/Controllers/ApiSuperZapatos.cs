@@ -165,7 +165,10 @@ namespace WebApi_SuperZapatos.Controllers
                         return StoreResponse;
                     }
 
-                    storesEdit = stores;
+                    //storesEdit = stores;
+
+                    superZapatos.Entry(storesEdit).State = EntityState.Detached;
+                    superZapatos.Entry(stores).State = EntityState.Modified;
 
                     superZapatos.SaveChanges();
 
@@ -363,7 +366,7 @@ namespace WebApi_SuperZapatos.Controllers
 
             return ArticlesResponse;
         }
-        [HttpPost]
+        [HttpPut]
         [Route("services/articles/edit/{id?}")]
         public ArticlesResponse Articles(string id, Articles articles)
         {
@@ -410,6 +413,8 @@ namespace WebApi_SuperZapatos.Controllers
 
                 using (DbContextSuperZapatos superZapatos = new DbContextSuperZapatos(connectionString))
                 {
+                    Stores storeEdit = superZapatos.Stores.Find(articles.store_id);
+
                     Articles articlesEdit = superZapatos.Articles.Find(idNumero);
                     if (articlesEdit == null)
                     {
@@ -422,7 +427,8 @@ namespace WebApi_SuperZapatos.Controllers
                         return ArticlesResponse;
                     }
 
-                    articlesEdit = articles;
+                    superZapatos.Entry(articlesEdit).State = EntityState.Detached;
+                    superZapatos.Entry(articles).State = EntityState.Modified;
 
                     superZapatos.SaveChanges();
 
@@ -459,7 +465,7 @@ namespace WebApi_SuperZapatos.Controllers
 
             return ArticlesResponse;
         }
-        [HttpPost]
+        [HttpDelete]
         [Route("services/articles/delete/{id?}")]
         public ArticlesResponse Articles(string id)
         {

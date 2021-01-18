@@ -107,7 +107,7 @@
             this.dgvStore.RowHeadersVisible = false;
             this.dgvStore.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvStore.Size = new System.Drawing.Size(716, 348);
-            this.dgvStore.TabIndex = 0;
+            this.dgvStore.TabIndex = 1;
             this.dgvStore.Text = "dataGridView1";
             this.dgvStore.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvStore_CellContentClick);
             // 
@@ -191,7 +191,7 @@
             this.cmbTiendaArticles.Location = new System.Drawing.Point(64, 25);
             this.cmbTiendaArticles.Name = "cmbTiendaArticles";
             this.cmbTiendaArticles.Size = new System.Drawing.Size(147, 23);
-            this.cmbTiendaArticles.TabIndex = 3;
+            this.cmbTiendaArticles.TabIndex = 0;
             // 
             // lblTiendaArticle
             // 
@@ -210,7 +210,7 @@
             this.btnBuscarArticlesStores.Location = new System.Drawing.Point(230, 20);
             this.btnBuscarArticlesStores.Name = "btnBuscarArticlesStores";
             this.btnBuscarArticlesStores.Size = new System.Drawing.Size(83, 31);
-            this.btnBuscarArticlesStores.TabIndex = 0;
+            this.btnBuscarArticlesStores.TabIndex = 1;
             this.btnBuscarArticlesStores.Text = "Buscar";
             this.btnBuscarArticlesStores.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnBuscarArticlesStores.UseVisualStyleBackColor = false;
@@ -224,7 +224,7 @@
             this.btnAgregarArticulo.Location = new System.Drawing.Point(12, 79);
             this.btnAgregarArticulo.Name = "btnAgregarArticulo";
             this.btnAgregarArticulo.Size = new System.Drawing.Size(83, 31);
-            this.btnAgregarArticulo.TabIndex = 0;
+            this.btnAgregarArticulo.TabIndex = 2;
             this.btnAgregarArticulo.Text = "Agregar";
             this.btnAgregarArticulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAgregarArticulo.UseVisualStyleBackColor = false;
@@ -242,7 +242,7 @@
             this.dgvArticles.RowHeadersVisible = false;
             this.dgvArticles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvArticles.Size = new System.Drawing.Size(716, 286);
-            this.dgvArticles.TabIndex = 1;
+            this.dgvArticles.TabIndex = 3;
             this.dgvArticles.Text = "dataGridView1";
             this.dgvArticles.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvArticles_CellContentClick);
             // 

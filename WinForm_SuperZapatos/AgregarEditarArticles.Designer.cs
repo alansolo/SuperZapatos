@@ -44,9 +44,9 @@
             this.txtNameArticles = new System.Windows.Forms.TextBox();
             this.lblNameArticles = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnEditarArticles = new System.Windows.Forms.Button();
             this.btnCancelarArticles = new System.Windows.Forms.Button();
             this.btnGuardarArticles = new System.Windows.Forms.Button();
-            this.btnEditarArticles = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -93,7 +93,7 @@
             this.cmbTiendaArticles.Location = new System.Drawing.Point(109, 161);
             this.cmbTiendaArticles.Name = "cmbTiendaArticles";
             this.cmbTiendaArticles.Size = new System.Drawing.Size(149, 23);
-            this.cmbTiendaArticles.TabIndex = 2;
+            this.cmbTiendaArticles.TabIndex = 5;
             // 
             // lblTiendaArticles
             // 
@@ -109,7 +109,7 @@
             this.txtTotalVaultArticles.Location = new System.Drawing.Point(109, 132);
             this.txtTotalVaultArticles.Name = "txtTotalVaultArticles";
             this.txtTotalVaultArticles.Size = new System.Drawing.Size(149, 23);
-            this.txtTotalVaultArticles.TabIndex = 1;
+            this.txtTotalVaultArticles.TabIndex = 4;
             // 
             // lblTotalBovedaArticles
             // 
@@ -134,7 +134,7 @@
             this.txtTotalShelfArticles.Location = new System.Drawing.Point(109, 103);
             this.txtTotalShelfArticles.Name = "txtTotalShelfArticles";
             this.txtTotalShelfArticles.Size = new System.Drawing.Size(149, 23);
-            this.txtTotalShelfArticles.TabIndex = 1;
+            this.txtTotalShelfArticles.TabIndex = 3;
             // 
             // lblTotalShelfArticles
             // 
@@ -150,7 +150,7 @@
             this.txtPriceArticles.Location = new System.Drawing.Point(109, 74);
             this.txtPriceArticles.Name = "txtPriceArticles";
             this.txtPriceArticles.Size = new System.Drawing.Size(149, 23);
-            this.txtPriceArticles.TabIndex = 1;
+            this.txtPriceArticles.TabIndex = 2;
             // 
             // txtDescriptionArticles
             // 
@@ -173,7 +173,7 @@
             this.txtNameArticles.Location = new System.Drawing.Point(109, 16);
             this.txtNameArticles.Name = "txtNameArticles";
             this.txtNameArticles.Size = new System.Drawing.Size(149, 23);
-            this.txtNameArticles.TabIndex = 1;
+            this.txtNameArticles.TabIndex = 0;
             // 
             // lblNameArticles
             // 
@@ -195,6 +195,19 @@
             this.panel2.Size = new System.Drawing.Size(295, 45);
             this.panel2.TabIndex = 1;
             // 
+            // btnEditarArticles
+            // 
+            this.btnEditarArticles.Image = ((System.Drawing.Image)(resources.GetObject("btnEditarArticles.Image")));
+            this.btnEditarArticles.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnEditarArticles.Location = new System.Drawing.Point(57, 9);
+            this.btnEditarArticles.Name = "btnEditarArticles";
+            this.btnEditarArticles.Size = new System.Drawing.Size(85, 30);
+            this.btnEditarArticles.TabIndex = 7;
+            this.btnEditarArticles.Text = "Editar";
+            this.btnEditarArticles.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEditarArticles.UseVisualStyleBackColor = true;
+            this.btnEditarArticles.Click += new System.EventHandler(this.btnEditarArticles_Click);
+            // 
             // btnCancelarArticles
             // 
             this.btnCancelarArticles.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelarArticles.Image")));
@@ -202,7 +215,7 @@
             this.btnCancelarArticles.Location = new System.Drawing.Point(161, 9);
             this.btnCancelarArticles.Name = "btnCancelarArticles";
             this.btnCancelarArticles.Size = new System.Drawing.Size(85, 30);
-            this.btnCancelarArticles.TabIndex = 1;
+            this.btnCancelarArticles.TabIndex = 8;
             this.btnCancelarArticles.Text = "Cancelar";
             this.btnCancelarArticles.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCancelarArticles.UseVisualStyleBackColor = true;
@@ -215,24 +228,11 @@
             this.btnGuardarArticles.Location = new System.Drawing.Point(57, 9);
             this.btnGuardarArticles.Name = "btnGuardarArticles";
             this.btnGuardarArticles.Size = new System.Drawing.Size(85, 30);
-            this.btnGuardarArticles.TabIndex = 0;
+            this.btnGuardarArticles.TabIndex = 6;
             this.btnGuardarArticles.Text = "Guardar";
             this.btnGuardarArticles.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnGuardarArticles.UseVisualStyleBackColor = true;
             this.btnGuardarArticles.Click += new System.EventHandler(this.btnGuardarArticles_Click);
-            // 
-            // btnEditarArticles
-            // 
-            this.btnEditarArticles.Image = ((System.Drawing.Image)(resources.GetObject("btnEditarArticles.Image")));
-            this.btnEditarArticles.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnEditarArticles.Location = new System.Drawing.Point(57, 9);
-            this.btnEditarArticles.Name = "btnEditarArticles";
-            this.btnEditarArticles.Size = new System.Drawing.Size(85, 30);
-            this.btnEditarArticles.TabIndex = 0;
-            this.btnEditarArticles.Text = "Editar";
-            this.btnEditarArticles.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEditarArticles.UseVisualStyleBackColor = true;
-            this.btnEditarArticles.Click += new System.EventHandler(this.btnEditarArticles_Click);
             // 
             // AgregarEditarArticles
             // 

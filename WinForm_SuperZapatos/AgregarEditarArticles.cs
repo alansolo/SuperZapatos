@@ -18,6 +18,9 @@ namespace WinForm_SuperZapatos
         public int totalShelfArticles;
         public int totalVaultArticles;
         public int idStore;
+
+        const string tituloAddArticles = "Agregar Articulo";
+        const string tituloEditArticles = "Editar Articulo";
         public enum Tipo
         {
             Add,
@@ -62,27 +65,27 @@ namespace WinForm_SuperZapatos
         {
             if (string.IsNullOrEmpty(txtNameArticles.Text))
             {
-                MessageBox.Show("Debe agregar el nombre del articulo.", "Agregar Articulo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Debe agregar el nombre del articulo.", tituloAddArticles, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (string.IsNullOrEmpty(txtDescriptionArticles.Text))
             {
-                MessageBox.Show("Debe agregar la descripcion del articulo.", "Agregar Articulo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Debe agregar la descripcion del articulo.", tituloAddArticles, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (string.IsNullOrEmpty(txtPriceArticles.Text))
             {
-                MessageBox.Show("Debe agregar el precio del articulo.", "Agregar Articulo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Debe agregar el precio del articulo.", tituloAddArticles, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (string.IsNullOrEmpty(txtTotalShelfArticles.Text))
             {
-                MessageBox.Show("Debe agregar el total de estante.", "Agregar Articulo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Debe agregar el total de estante.", tituloAddArticles, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (string.IsNullOrEmpty(txtTotalVaultArticles.Text))
             {
-                MessageBox.Show("Debe agregar el total de boveda.", "Agregar Articulo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Debe agregar el total de boveda.", tituloAddArticles, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -101,27 +104,27 @@ namespace WinForm_SuperZapatos
         {
             if (string.IsNullOrEmpty(txtNameArticles.Text))
             {
-                MessageBox.Show("Debe agregar el nombre del articulo.", "Editar Articulo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Debe agregar el nombre del articulo.", tituloEditArticles, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (string.IsNullOrEmpty(txtDescriptionArticles.Text))
             {
-                MessageBox.Show("Debe agregar la descripcion del articulo.", "Editar Articulo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Debe agregar la descripcion del articulo.", tituloEditArticles, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (string.IsNullOrEmpty(txtPriceArticles.Text))
             {
-                MessageBox.Show("Debe agregar el precio del articulo.", "Editar Articulo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Debe agregar el precio del articulo.", tituloEditArticles, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (string.IsNullOrEmpty(txtTotalShelfArticles.Text))
             {
-                MessageBox.Show("Debe agregar el total de estante.", "Editar Articulo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Debe agregar el total de estante.", tituloEditArticles, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (string.IsNullOrEmpty(txtTotalVaultArticles.Text))
             {
-                MessageBox.Show("Debe agregar el total de boveda.", "Editar Articulo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Debe agregar el total de boveda.", tituloEditArticles, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -130,7 +133,7 @@ namespace WinForm_SuperZapatos
             this.priceArticles = Convert.ToDecimal(txtPriceArticles.Text);
             this.totalShelfArticles = Convert.ToInt32(txtTotalShelfArticles.Text);
             this.totalVaultArticles = Convert.ToInt32(txtTotalVaultArticles.Text);
-            this.idStore = Convert.ToInt32(cmbTiendaArticles.SelectedValue);
+            this.idStore = Convert.ToInt32(cmbTiendaArticles.SelectedValue.ToString());
 
             this.esGuardar = true;
 

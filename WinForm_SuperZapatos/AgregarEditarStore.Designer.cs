@@ -121,7 +121,7 @@
             this.btnEditarStore.Location = new System.Drawing.Point(57, 5);
             this.btnEditarStore.Name = "btnEditarStore";
             this.btnEditarStore.Size = new System.Drawing.Size(85, 30);
-            this.btnEditarStore.TabIndex = 2;
+            this.btnEditarStore.TabIndex = 3;
             this.btnEditarStore.Text = "Editar";
             this.btnEditarStore.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnEditarStore.UseVisualStyleBackColor = true;
@@ -134,7 +134,7 @@
             this.btnCancelarStore.Location = new System.Drawing.Point(162, 5);
             this.btnCancelarStore.Name = "btnCancelarStore";
             this.btnCancelarStore.Size = new System.Drawing.Size(85, 30);
-            this.btnCancelarStore.TabIndex = 3;
+            this.btnCancelarStore.TabIndex = 4;
             this.btnCancelarStore.Text = "Cancelar";
             this.btnCancelarStore.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCancelarStore.UseVisualStyleBackColor = true;
